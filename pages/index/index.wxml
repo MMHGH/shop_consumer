@@ -1,4 +1,43 @@
 <!--index.wxml-->
 <view class="container">
-  <van-button type="primary">主要按钮</van-button>
+  <view class="home">
+    <view class="flex">
+      <view class="home-logo flex_1">
+        <view class="logo">TATTOO</view>
+        <view class="text">塔兔蒸汽实验室</view>
+     </view>
+     <view class="home-icon" bindtap='checkAuth'>
+       <van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
+     </view>
+    </view>
+    <view class="home-content">
+      <view class="item" wx:for="{{list}}" wx:key="{{index}}" bindtap='checkAuth'>
+        <image src="{{item.url}}" class="bg_img"></image>
+        <view>{{item.text}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="fotter white motifBg">
+    电子烟含有尼古丁致瘾成分，
+    <text class="forbid">禁止</text>
+    未成年购买使用
+  </view>
+
+  <van-popup
+    show="{{ show }}"
+    round
+    closeable
+    position="bottom"
+    custom-style="height: 35%"
+    bind:close="onClose">
+    <view class="auth flex">
+      <view class="login-tips">请先授权登录</view>
+      <view class="login-auth">请先授权登录</view>
+      <view class="login-btn">
+        <!-- <van-button class="btn" round plain  bindtap='onClose' type="primary">暂不登录</van-button> -->
+        <!-- <van-button round  type="primary" bindtap='login'>立即登录</van-button> -->
+        <button class='pop_btn' plain="true" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">立即登录</button>
+      </view>
+    </view>
+  </van-popup>
 </view>

@@ -1,0 +1,31 @@
+<!--pages/myCenter/myCenter.wxml-->
+<view class="container">
+    <view class="my-center">
+        <view class="center-info">
+            <view class="center-info__logo">
+                <view class="home-logo flex_1">
+                    <view class="logo">TATTOO</view>
+                    <view class="text">塔兔蒸汽实验室</view>
+                 </view>
+                 <view class="home-icon" bindtap='checkAuth'>
+                   <!-- <van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" /> -->
+                 </view>
+            </view>
+        </view>    
+        <view class="center-content">
+            <scroll-view class='main-scroll' scroll-y style="height: 100%">
+                <view class='main-list'>
+                    <view class='card'>
+                    <view class='card-box'></view>
+                    <view>11</view>
+                    <view class='card-content'>dd</view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+        <view class="relation motifBg" bindtap="callUp">
+            <van-icon name="phone-o" size="60rpx" color="#fff"/>
+            <text class="text">{{text}}</text>
+        </view>
+    </view>
+</view>

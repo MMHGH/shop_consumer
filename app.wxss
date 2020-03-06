@@ -1,5 +1,5 @@
 /**app.wxss**/
-.container {
+/* .container {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -7,4 +7,38 @@
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
-} 
+}  */
+
+page{
+  width: 100%;
+  height:100%;
+}
+
+.container{
+  font-size: 30rpx;
+}
+.flex{
+  display: flex;
+}
+.flex_1{
+  flex:1;
+}
+.forbid{
+  color:#d9001b;
+}
+.motifBg{
+  background:#333333;
+}
+.motifColor{
+  color:#333333;
+}
+.white{
+  color:#fff;
+}
+.fotter{
+  position: fixed;
+  bottom:0;
+  padding:20rpx;
+  width:100%;
+  text-align: center;
+}

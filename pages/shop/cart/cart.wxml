@@ -1,0 +1,44 @@
+<!--pages/shop/cart/cart.wxml-->
+<view class="container">
+    <view class="cart">
+        <view class="item" wx:for="{{cartListL}}" wx:key="{{index}}">
+            <van-swipe-cell id="swipe-cell" right-width="{{ 65 }}">
+                <view class="item-info flex">
+                    <view class="item-info__checked">
+                        <van-checkbox value="{{ item.checked }}" checked-color="#333333" bind:change="onChangeChecked"></van-checkbox>
+                    </view>
+                    <view class="item-info__middle">
+                       <view class="middle-img">
+                            <van-image
+                            round
+                            width="120rpx"
+                            height="120rpx"
+                            src="https://img.yzcdn.cn/vant/cat.jpeg"/>
+                       </view>
+                        <view class="middle-text">
+                            <view class="brand">品牌</view>
+                            <view class="taste">口口味口味口口</view>
+                            <view class="prize">价格</view>
+                        </view>
+                    </view>
+                    <view class="item-info__num">
+                        <van-stepper input-width="50rpx" button-size="50rpx" value="{{ 1 }}"  min="1" max="8" integer bind:change="onChangeNum" />
+                    </view>
+                </view>
+                <view slot="right">删除</view>
+            </van-swipe-cell>
+        </view>
+    </view>
+    <view class="fotter white motifBg">
+        <view class="footer-pay flex">
+            <view class="money">
+                <text>总金额：</text>
+                <text>优惠：</text>
+            </view>
+            <view class="payment" bindtap="payment">付款</view>
+        </view>
+        电子烟含有尼古丁致瘾成分，
+        <text class="forbid">禁止</text>
+        未成年购买使用
+    </view>
+</view>

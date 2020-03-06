@@ -1,21 +1,46 @@
-/**index.wxss**/
-.userinfo {
-  display: flex;
+.home {
+  padding: 30rpx;
+}
+.home-logo {
+  margin-bottom: 20rpx;
+}
+.home-logo .logo {
+  font-size: 60rpx;
+  font-weight: 600;
+}
+.home-logo .text {
+  margin-left: 55rpx;
+  font-size: 33rpx;
+}
+.home-icon {
+  font-size: 100rpx;
+}
+.home-content .item {
+  height: 300rpx;
+  margin-bottom: 90rpx;
+}
+.home-content .item .bg_img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  padding: 20rpx 0;
+}
+.auth {
   flex-direction: column;
   align-items: center;
+  margin-top: 60rpx;
 }
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.auth .login-tips {
+  color: #424242;
+  font-size: 50rpx;
+  margin-bottom: 20rpx;
 }
-
-.userinfo-nickname {
-  color: #aaa;
+.auth .login-auth {
+  color: #b6b6b6;
 }
-
-.usermotto {
-  margin-top: 200px;
+.auth .login-btn {
+  margin-top: 50rpx;
+}
+.auth .login-btn .btn {
+  margin-right: 20rpx;
 }

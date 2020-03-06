@@ -1,0 +1,55 @@
+.cart .item .item-info {
+  padding: 0 30rpx;
+  height: 200rpx;
+  align-items: center;
+}
+.cart .item .item-info__checked {
+  width: 10%;
+}
+.cart .item .item-info__middle {
+  flex: 1;
+}
+.cart .item .item-info__middle .middle-img {
+  display: inline-block;
+}
+.cart .item .item-info__middle .middle-text {
+  vertical-align: top;
+  display: inline-block;
+  margin-left: 15rpx;
+}
+.cart .item .item-info__middle .middle-text .brand {
+  margin-top: 5rpx;
+}
+.cart .item .item-info__middle .middle-text .taste {
+  margin-bottom: 20rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.cart .item .item-info__middle .middle-text .prize {
+  color: #a30014;
+}
+.cart .item .item-info__num {
+  width: 25%;
+}
+.footer-pay {
+  padding: 0 10rpx 20rpx;
+  text-align: left;
+}
+.footer-pay .money {
+  width: 80%;
+}
+.footer-pay .payment {
+  font-size: 50rpx;
+  font-weight: 600;
+}
+.van-swipe-cell__right {
+  display: inline-block;
+  width: 65px;
+  font-size: 15px;
+  line-height: 200rpx;
+  border-radius: 20rpx solid #a30014;
+  color: #fff;
+  text-align: center;
+  background-color: #a30014;
+}

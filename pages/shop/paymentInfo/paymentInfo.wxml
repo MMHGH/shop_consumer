@@ -1,0 +1,37 @@
+<!--pages/shop/paymentInfo/paymentInfo.wxml-->
+<view class="container">
+    <view class="payment-info">
+        <van-cell-group>
+            <van-field
+              value="{{ userName }}"
+              label="姓名"
+              required
+              placeholder="请输入用户名"
+              error-message="{{errorMsgName}}"
+              bind:input="getName"
+            />
+            <van-field
+              value="{{ phone }}"
+              label="联系方式"
+              type="number"
+              required
+              maxlength="11"
+              placeholder="请输入手机号"
+              bind:input="getPhone"
+              error-message="{{errorMsgPhone}}"
+            />
+          </van-cell-group>
+    </view>
+    <view class="fotter white motifBg">
+        <view class="footer-pay flex">
+            <view class="money">
+                <text>总金额：</text>
+                <text>优惠：</text>
+            </view>
+            <view class="payment" bindtap="payment">付款</view>
+        </view>
+        电子烟含有尼古丁致瘾成分，
+        <text class="forbid">禁止</text>
+        未成年购买使用
+    </view>
+</view>

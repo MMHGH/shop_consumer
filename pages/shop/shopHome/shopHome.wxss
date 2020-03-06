@@ -1,0 +1,44 @@
+.shop-home__name {
+  justify-content: center;
+  font-size: 40rpx;
+  font-weight: 600;
+  padding: 10rpx 0;
+  border-bottom: 1px solid #333333;
+}
+.shop-home__tab .van-sidebar-item--selected {
+  border-color: #333333;
+}
+.shop-home__content {
+  width: 100%;
+}
+.shop-home__content .swiper {
+  padding: 0 30rpx;
+}
+.shop-home__content .u-wrp-bnr {
+  height: 200rpx;
+  display: block;
+}
+.shop-home__content .u-img-slide {
+  width: 100%;
+  height: inherit;
+}
+.shop-home__content .grid-info .img {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-bottom: 10rpx;
+  border: 1px solid #a7a7a7;
+}
+.add-cart {
+  position: fixed;
+  right: 20rpx;
+  bottom: 180rpx;
+  padding: 25rpx;
+  border-radius: 30rpx;
+  display: flex;
+  align-items: center;
+}
+.add-cart .text {
+  color: #fff;
+  margin-left: 10rpx;
+}
