@@ -4,6 +4,9 @@ const API = require('./server/api.js')
 
 App({
   onLaunch: function () {
+    
+  },
+  onShow(){
     // 登录
     wx.login({
       success: res => {

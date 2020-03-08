@@ -1,49 +1,49 @@
-<!--pages/shop/shopHome/shopHome.wxml-->
 
-<view class="container">
-    <view class="shop-home flex">
-        <!-- <view class="shop-home__name flex">
-            南山店
-        </view> -->
-        <view class="shop-home__tab">
-            <van-sidebar active-key="{{ activeKey }}" bind:change="onChange">
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-                <van-sidebar-item title="标签名称" />
-            </van-sidebar>
-        </view>
-        <!-- 右侧内容 -->
-        <view class="shop-home__content">
-            <view class="swiper">
-                <swiper class='u-wrp-bnr' indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true'>
-                    <block wx:for="{{swiperList}}" wx:for-index="index">
-                      <swiper-item>
-                        <image src='{{item.url}}' class='u-img-slide' mode='aspectFill'></image>
-                      </swiper-item>
-                    </block>
-                  </swiper>
+<view class='shop'>
+        <view class='header'>南山店</view>
+        <view class='main'>
+            <view class='main-left'>
+                <scroll-view  scroll-y="true" style="height: 100%" class='y' >
+                    <van-sidebar  active-key="{{ activeKey }}" bind:change="onChange">
+                        <van-sidebar-item wx:for="{{cardList}}" wx:key="{{index}}" title="{{item.name}}" />
+                    </van-sidebar>
+                </scroll-view> 
             </view>
-            <view class="grid-info">
-                <van-grid column-num="3" border="{{ false }}">
-                    <van-grid-item use-slot wx:for="{{ goodList }}" wx:for-item="index">
-                      <image
-                        class="img"
-                        mode='aspectFill'
-                        src="https://img.yzcdn.cn/vant/apple-{{ index + 1 }}.jpg"
-                      />
-                      <text class="text">口味</text>
-                    </van-grid-item>
-                </van-grid>
+            <view class='main-right'>
+                <scroll-view  scroll-y="true" style="height: 100%" class='main-scroll' >
+                    <view class="content">
+                        <view class="swiper">
+                            <swiper class='u-wrp-bnr' indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true'>
+                                <block wx:for="{{swiperList}}" wx:key="{{index}}">
+                                    <swiper-item>
+                                    <image src='{{item.url}}' class='u-img-slide' mode='aspectFill'></image>
+                                    </swiper-item>
+                                </block>
+                            </swiper>
+                        </view>
+                        <view class="grid-info">
+                            <van-grid column-num="3" border="{{ false }}">
+                                <van-grid-item bindtap="addCart" use-slot wx:for="{{ goodList }}" wx:key="{{index}}">
+                                    <image
+                                    class="img"
+                                    mode='aspectFill'
+                                    src=""
+                                    />
+                                    <text class="text">口味好吃</text>
+                                </van-grid-item>
+                            </van-grid>
+                        </view>
+                    </view>
+                </scroll-view> 
             </view>
         </view>
-    </view>
-    <view class="add-cart motifBg" bindtab="toCart">
-        <van-icon name="shopping-cart-o" size="20px" color="#fff"/>
-        <text class="text">99</text>
-    </view>
-    <view class="fotter white motifBg">
-        电子烟含有尼古丁致瘾成分，
-        <text class="forbid">禁止</text>
-        未成年购买使用
-    </view>
-</view>
+        <view class="add-cart motifBg" bindtap="toCart">
+            <van-icon name="shopping-cart-o" size="20px" color="#fff"/>
+            <text class="text">99</text>
+        </view>
+        <view class="fotter white motifBg">
+            电子烟含有尼古丁致瘾成分，
+            <text class="forbid">禁止</text>
+            未成年购买使用
+        </view>
+      </view>

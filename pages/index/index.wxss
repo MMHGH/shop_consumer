@@ -28,7 +28,7 @@
 .auth {
   flex-direction: column;
   align-items: center;
-  margin-top: 60rpx;
+  margin-top: 70rpx;
 }
 .auth .login-tips {
   color: #424242;
@@ -37,10 +37,12 @@
 }
 .auth .login-auth {
   color: #b6b6b6;
+  font-size: 35rpx;
 }
 .auth .login-btn {
   margin-top: 50rpx;
 }
 .auth .login-btn .btn {
-  margin-right: 20rpx;
+  color: #fff;
+  background: #333333;
 }

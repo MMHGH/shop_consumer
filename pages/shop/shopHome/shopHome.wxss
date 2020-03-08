@@ -1,35 +1,59 @@
-.shop-home__name {
-  justify-content: center;
-  font-size: 40rpx;
-  font-weight: 600;
-  padding: 10rpx 0;
-  border-bottom: 1px solid #333333;
-}
-.shop-home__tab .van-sidebar-item--selected {
-  border-color: #333333;
-}
-.shop-home__content {
+.shop .header {
+  position: fixed;
+  text-align: center;
+  line-height: 100rpx;
+  z-index: 999;
   width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #c9c9c9;
 }
-.shop-home__content .swiper {
-  padding: 0 30rpx;
+.shop .main {
+  position: relative;
+  display: flex;
+  top: 100rpx;
 }
-.shop-home__content .u-wrp-bnr {
+.shop .main-left {
+  position: fixed;
+  width: 200rpx;
+  height: 100%;
+}
+.shop .main-left .van-sidebar {
+  text-align: center;
+  margin-bottom: 200rpx;
+}
+.shop .main-left .van-sidebar-item--selected {
+  background: #333333;
+  color: #fff;
+  border: none;
+}
+.shop .main-right {
+  margin: 0 0 50rpx 200rpx;
+  text-align: right;
+  overflow: hidden;
+}
+.shop .main-right .content {
+  padding: 20rpx;
+}
+.shop .main-right .content .swiper .u-wrp-bnr {
   height: 200rpx;
   display: block;
 }
-.shop-home__content .u-img-slide {
+.shop .main-right .content .swiper .u-img-slide {
   width: 100%;
   height: inherit;
 }
-.shop-home__content .grid-info .img {
+.shop .main-right .content .grid-info .img {
   width: 100rpx;
   height: 100rpx;
   border-radius: 50%;
   margin-bottom: 10rpx;
   border: 1px solid #a7a7a7;
 }
-.add-cart {
+.shop .main-right .content .grid-info .text {
+  font-size: 30rpx;
+  text-align: center;
+}
+.shop .add-cart {
   position: fixed;
   right: 20rpx;
   bottom: 180rpx;
@@ -38,7 +62,7 @@
   display: flex;
   align-items: center;
 }
-.add-cart .text {
+.shop .add-cart .text {
   color: #fff;
   margin-left: 10rpx;
 }

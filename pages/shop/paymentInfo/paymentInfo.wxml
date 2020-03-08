@@ -6,7 +6,7 @@
               value="{{ userName }}"
               label="姓名"
               required
-              placeholder="请输入用户名"
+              placeholder="请输入姓名"
               error-message="{{errorMsgName}}"
               bind:input="getName"
             />
@@ -25,8 +25,8 @@
     <view class="fotter white motifBg">
         <view class="footer-pay flex">
             <view class="money">
-                <text>总金额：</text>
-                <text>优惠：</text>
+                <text>总金额：{{totalPrice}}</text>
+                <!-- <text>优惠：</text> -->
             </view>
             <view class="payment" bindtap="payment">付款</view>
         </view>

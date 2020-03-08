@@ -9,6 +9,33 @@ Page({
    */
   data: {
     activeKey: 0,
+    cardList:[
+      {
+        name: 'aa',
+        content: 'bb'
+      }, {
+        name: 'aa',
+        content: 'bb'
+      }, {
+        name: 'aa',
+        content: 'bb'
+      }, {
+        name: 'aa',
+        content: 'bb'
+      }, {
+        name: 'aa',
+        content: 'bb'
+      }, {
+        name: 'aa',
+        content: 'bb'
+      }, {
+        name: 'aa',
+        content: 'bb'
+      }, {
+        name: 'aa',
+        content: 'bb'
+      },
+    ],
     swiperList:[
       {
         url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg'
@@ -17,7 +44,7 @@ Page({
         url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg'
       },
     ],
-    goodList:new Array(6)
+    goodList:new Array(100)
   },
 
   /**
@@ -46,6 +73,15 @@ Page({
       icon: 'none',
       title: `切换至第${event.detail}项`
     });
+  },
+  addCart(e){
+    let params = {
+      apikey:'0df993c66c0c636e29ecbb5344252a4a',
+      start:1,
+      count:10
+    }
+    // server.getRequest(API.getVideoPage,params).then(res => {
+    // })
   },
   toCart(){
     wx.navigateTo({

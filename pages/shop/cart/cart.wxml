@@ -1,11 +1,11 @@
 <!--pages/shop/cart/cart.wxml-->
 <view class="container">
-    <view class="cart">
+    <view class="cart" wx:if="{{cartListL.length}}">
         <view class="item" wx:for="{{cartListL}}" wx:key="{{index}}">
             <van-swipe-cell id="swipe-cell" right-width="{{ 65 }}">
                 <view class="item-info flex">
                     <view class="item-info__checked">
-                        <van-checkbox value="{{ item.checked }}" checked-color="#333333" bind:change="onChangeChecked"></van-checkbox>
+                        <van-checkbox value="{{ item.selected }}" checked-color="#333333" data-index="{{index}}" bind:change="onChangeChecked"></van-checkbox>
                     </view>
                     <view class="item-info__middle">
                        <view class="middle-img">
@@ -13,27 +13,33 @@
                             round
                             width="120rpx"
                             height="120rpx"
-                            src="https://img.yzcdn.cn/vant/cat.jpeg"/>
+                            src="{{item.url}}"/>
                        </view>
                         <view class="middle-text">
-                            <view class="brand">品牌</view>
-                            <view class="taste">口口味口味口口</view>
-                            <view class="prize">价格</view>
+                            <view class="brand">{{item.name}}</view>
+                            <view class="taste">{{item.name}}</view>
+                            <view class="prize">￥ {{item.money}}</view>
                         </view>
                     </view>
                     <view class="item-info__num">
-                        <van-stepper input-width="50rpx" button-size="50rpx" value="{{ 1 }}"  min="1" max="8" integer bind:change="onChangeNum" />
+                        <van-stepper input-width="50rpx" disabled="{{!item.num}}" button-size="50rpx" value="{{ 1 }}"  min="1" max="{{item.max}}" integer data-index="{{index}}" bind:change="onChangeNum" />
                     </view>
                 </view>
-                <view slot="right">删除</view>
+                <view slot="right" data-index="{{index}}" bindtap="del">删除</view>
             </van-swipe-cell>
         </view>
     </view>
+    <view class='no_shop' wx:if="{{!cartListL.length}}">
+        <text class='on_shop_txt'>购物车空空如也</text>
+        <navigator url="/pages/shop/shopHome/shopHome"  hover-class="none">
+            <text class='txt_btn'>去主页逛逛吧</text>
+        </navigator>
+    </view>
     <view class="fotter white motifBg">
-        <view class="footer-pay flex">
+        <view class="footer-pay flex" wx:if="{{cartListL.length}}">
             <view class="money">
-                <text>总金额：</text>
-                <text>优惠：</text>
+                <text>总金额：{{totalPrice}}</text>
+                <!-- <text>优惠：</text> -->
             </view>
             <view class="payment" bindtap="payment">付款</view>
         </view>

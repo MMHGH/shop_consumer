@@ -1,3 +1,6 @@
+.cart {
+  margin-bottom: 200rpx;
+}
 .cart .item .item-info {
   padding: 0 30rpx;
   height: 200rpx;
@@ -32,8 +35,26 @@
 .cart .item .item-info__num {
   width: 25%;
 }
+.cart .item .item-info__num .van-stepper__plus,
+.cart .item .item-info__num .van-stepper__minus {
+  background: #333333;
+}
+.cart .item .item-info__num .van-stepper__input {
+  margin: 0 5rpx;
+}
+.no_shop {
+  color: #97969b;
+  text-align: center;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+.no_shop .txt_btn {
+  color: #4a42d9;
+}
 .footer-pay {
-  padding: 0 10rpx 20rpx;
+  padding: 0 15rpx 20rpx;
   text-align: left;
 }
 .footer-pay .money {
