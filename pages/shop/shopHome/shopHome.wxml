@@ -5,7 +5,7 @@
             <view class='main-left'>
                 <scroll-view  scroll-y="true" style="height: 100%" class='y' >
                     <van-sidebar  active-key="{{ activeKey }}" bind:change="onChange">
-                        <van-sidebar-item wx:for="{{cardList}}" wx:key="{{index}}" title="{{item.name}}" />
+                        <van-sidebar-item wx:for="{{brandList}}" wx:key="{{index}}" title="{{item.name}}" />
                     </van-sidebar>
                 </scroll-view> 
             </view>
@@ -23,13 +23,13 @@
                         </view>
                         <view class="grid-info">
                             <van-grid column-num="3" border="{{ false }}">
-                                <van-grid-item bindtap="addCart" use-slot wx:for="{{ goodList }}" wx:key="{{index}}">
+                                <van-grid-item data-id="{{item.id}}" bindtap="addCart" use-slot wx:for="{{ categoryList }}" wx:key="{{index}}">
                                     <image
                                     class="img"
                                     mode='aspectFill'
-                                    src=""
+                                    src="{{item.picUrl}}"
                                     />
-                                    <text class="text">口味好吃</text>
+                                    <text class="text">{{item.catName}}</text>
                                 </van-grid-item>
                             </van-grid>
                         </view>
@@ -39,7 +39,7 @@
         </view>
         <view class="add-cart motifBg" bindtap="toCart">
             <van-icon name="shopping-cart-o" size="20px" color="#fff"/>
-            <text class="text">99</text>
+            <text class="text">{{cartTotal}}</text>
         </view>
         <view class="fotter white motifBg">
             电子烟含有尼古丁致瘾成分，

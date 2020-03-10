@@ -1,0 +1,21 @@
+
+var fliterOrderStatus = function (status){
+    //0-进行中,1-已完成，2-取消交易，3-订单已退费 
+    var statusTetx = '';
+    switch(status){
+        case 0:
+            statusTetx = '取货码：'
+            break;
+        case 1:
+            statusTetx = '已取货'
+            break;
+        case 3:
+            statusTetx = '已退款'
+            break;
+    }
+    return statusTetx
+}
+  
+module.exports = {
+    fliterOrderStatus:fliterOrderStatus
+}

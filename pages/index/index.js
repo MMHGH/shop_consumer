@@ -12,38 +12,44 @@ Page({
 
     show:false,
     isLogin:false,
+    type:'center',
     list:[
-      {
-        url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg',
-        text:'深圳市南山区桂庙新村61-1-1'
-      },
-      {
-        url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg',
-        text:'深圳市南山区桂庙新村61-1-1'
-      },
-      {
-        url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg',
-        text:'深圳市南山区桂庙新村61-1-1'
-      }
+      // {
+      //   banner:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg',
+      //   text:'深圳市南山区桂庙新村61-1-1'
+      // },
+      // {
+      //   banner:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg',
+      //   text:'深圳市南山区桂庙新村61-1-1'
+      // },
+      // {
+      //   banner:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg',
+      //   text:'深圳市南山区桂庙新村61-1-1'
+      // }
     ]
   },
   onLoad: function () {
-    
+    this.getListShop();
   },
   onShow(){
-    let params = {
-      apikey:'0df993c66c0c636e29ecbb5344252a4a',
-      start:1,
-      count:10
-    }
-    // server.getRequest(API.getVideoPage,params).then(res => {
-    // })
+  },
+  getListShop(){
+    let params = {}
+    server.postRequest(API.listShop,params).then(res => {
+      if(res.code == 100){
+        this.setData({ list: res.data });
+      }
+    })
   },
   // 校验权限
-  checkAuth() {
-    if(this.data.isLogin){
+  checkAuth(e) {
+    let isBindPhone =  Number(wx.getStorageSync('status'));
+    this.setData({ type: e.currentTarget.dataset.type });
+    wx.setStorageSync('shopId', e.currentTarget.dataset.id)
+    wx.setStorageSync('shopName', e.currentTarget.dataset.shopName)
+    if(isBindPhone){
       wx.navigateTo({
-        url:"/pages/shop/shopHome/shopHome"
+        url:this.data.type == 'center'?"/pages/myCenter/myCenter":"/pages/shop/shopHome/shopHome"
       })
     }else{
       this.setData({ show: true });
@@ -66,16 +72,22 @@ Page({
         iv: e.detail.iv,
         sessionKey: wx.getStorageSync('sessionKey')
       }
-      // server.postRequest(API.getVideoPage,params).then(res => {
-          // if(res.code == 100){
-            // let phone = res.data.phoneNumber
-            // wx.setStorageSync('phone', phone)
-          //   wx.setStorageSync('token', res.data.token)
-          //   wx.redirectTo({
-          //     url: '/pages/mine/index?memberId=' + res.data.memberId,
-          //   })
-          // }
-      // })
+      server.postRequest(API.getWXPhone,params).then(res => {
+          if(res.code == 100){
+            server.postRequest(API.login,{phone:res.data.phoneNumber}).then(res1 => {
+              if (res1.code == 100) {
+                let phone = res.data.phoneNumber
+                wx.setStorageSync('phone', phone)
+                wx.navigateTo({
+                  url:this.data.type == 'center'?"/pages/myCenter/myCenter":"/pages/shop/shopHome/shopHome"
+                })
+                that.setData({
+                  show: false
+                });
+              }
+            })
+          }
+      })
     }else{
       that.setData({
         show: false

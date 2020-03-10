@@ -9,33 +9,35 @@ Page({
    */
   data: {
     activeKey: 0,
-    cardList:[
-      {
-        name: 'aa',
-        content: 'bb'
-      }, {
-        name: 'aa',
-        content: 'bb'
-      }, {
-        name: 'aa',
-        content: 'bb'
-      }, {
-        name: 'aa',
-        content: 'bb'
-      }, {
-        name: 'aa',
-        content: 'bb'
-      }, {
-        name: 'aa',
-        content: 'bb'
-      }, {
-        name: 'aa',
-        content: 'bb'
-      }, {
-        name: 'aa',
-        content: 'bb'
-      },
+    brandId:'',
+    brandList:[
+      // {
+      //   name: 'aa',
+      //   content: 'bb'
+      // }, {
+      //   name: 'aa',
+      //   content: 'bb'
+      // }, {
+      //   name: 'aa',
+      //   content: 'bb'
+      // }, {
+      //   name: 'aa',
+      //   content: 'bb'
+      // }, {
+      //   name: 'aa',
+      //   content: 'bb'
+      // }, {
+      //   name: 'aa',
+      //   content: 'bb'
+      // }, {
+      //   name: 'aa',
+      //   content: 'bb'
+      // }, {
+      //   name: 'aa',
+      //   content: 'bb'
+      // },
     ],
+    categoryList:[],
     swiperList:[
       {
         url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg'
@@ -44,7 +46,8 @@ Page({
         url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg'
       },
     ],
-    goodList:new Array(100)
+    cartTotal:'',
+    goodList:new Array(4)
   },
 
   /**
@@ -57,31 +60,63 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getData();
+    this.getBrandList();
+    this.getCartTotal();
   },
-  getData(){
+  getBrandList(){
     let params = {
-      apikey:'0df993c66c0c636e29ecbb5344252a4a',
-      start:1,
-      count:10
+      shopId:wx.getStorageSync('shopId')
     }
-    // server.getRequest(API.getVideoPage,params).then(res => {
-    // })
+    server.getRequest(API.listGoodsBrandForSelect,params).then(res => {
+      if(res.code == 100){
+        this.setData({
+           brandList: res.data, 
+           brandId: res.data[0].id 
+        });
+        this.getCategoryList()
+      }
+    })
   },
-  onChange(event) {
-    wx.showToast({
-      icon: 'none',
-      title: `切换至第${event.detail}项`
-    });
+  getCategoryList(){
+    let params = {
+      brandId:this.data.brandId
+    }
+    server.getRequest(API.listGoodsCategoryForSelect,params).then(res => {
+      if(res.code == 100){
+        this.setData({
+          categoryList: res.data
+       });
+      }
+    })
+  },
+  getCartTotal(){
+    server.getRequest(API.getShoppingCartCount,{}).then(res => {
+      if(res.code == 100){
+        this.setData({
+          cartTotal: res.data
+        });
+      }
+    })
+  },
+  onChange(e) {
+    let index = e.detail;
+    this.setData({
+      brandId: this.data.brandList[index].id
+   });
+   this.getCategoryList()
   },
   addCart(e){
     let params = {
-      apikey:'0df993c66c0c636e29ecbb5344252a4a',
-      start:1,
-      count:10
+      goodsId:e.currentTarget.dataset.id,
+      number:1
     }
-    // server.getRequest(API.getVideoPage,params).then(res => {
-    // })
+    server.postRequest(API.addShoppingCart,params).then(res => {
+      if(res.code == 100){
+        this.setData({
+          cartTotal: res.data
+        });
+      }
+    })
   },
   toCart(){
     wx.navigateTo({

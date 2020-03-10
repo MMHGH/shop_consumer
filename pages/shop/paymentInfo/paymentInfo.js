@@ -65,7 +65,7 @@ Page({
         fee: that.data.totalPrice, //支付金额
         details: that.data.goodsList[0].goods_name,//支付商品的名称
     }
-    server.getRequest(API.getVideoPage,params).then(res => {
+    server.postRequest(API.orderWxPay,params).then(res => {
       if(result.data){
         wx.requestPayment({
           timeStamp: result.data['timeStamp'],
@@ -77,13 +77,13 @@ Page({
               console.log('支付成功');
               if (res.errMsg == "requestPayment:ok") {
                 // 发送请求
-                server.getRequest(API.getVideoPage,params).then(res => {
+                // server.getRequest(API.getVideoPage,params).then(res => {
                   setTimeout(function () {
                       wx.navigateTo({
                           url: "/pages/myCenter/myCenter"
                       })
                   }, 500)
-                })
+                // })
               }
           },
           fail:function(res){

@@ -2,23 +2,22 @@ const ENV = require('./config.js')
 const baseUrl = ENV.baseURL;
 
 const http = ({url,param  = {},method = 'GET'})=>{
-
+    param = { ...param, openid: wx.getStorageSync('openid') }
     return new Promise((resolve,reject) => {
       wx.request({
         url: baseUrl + url,
         data: param,
         method: method,
         header: {
-          'Content-Type': 'json'
-        //   'content-type': 'application/json', // 默认值
-        //   'token': wx.getStorageSync('token'),
+          'content-type': 'application/json', // 默认值
+          't-n': wx.getStorageSync('userToken'),
         },
         success: res => {
           if (res.data.code != 100) {
-            // wx.showToast({
-            //   title: res.data.message,
-            //   icon: 'none'
-            // })
+            wx.showToast({
+              title: res.data.message,
+              icon: 'none'
+            })
           }
           resolve(res.data)
         },

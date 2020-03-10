@@ -24,7 +24,7 @@ page {
   font-size: 100rpx;
 }
 .my-center .header .grade {
-  line-height: 100rpx;
+  line-height: 80rpx;
   color: #fff;
   text-align: center;
 }
@@ -62,9 +62,15 @@ page {
 .my-center .main-scroll .main-list .card-info .item-text {
   margin-left: 15rpx;
 }
+.my-center .main-scroll .main-list .card-info .item .status .statusText {
+  color: #169bd5;
+}
+.my-center .main-scroll .main-list .card-info .item .status .num {
+  text-align: right;
+}
 .my-center .main-scroll .main-list .card .back-goods {
   text-align: right;
-  margin: 10rpx;
+  margin: 0 10rpx 10rpx;
 }
 .my-center .main-scroll .main-list .location-info {
   color: #fff;
@@ -106,9 +112,11 @@ page {
 }
 .my-center .overlay .overlay-content .back {
   font-size: 30rpx;
-  margin-bottom: 20rpx;
 }
-.my-center .overlay .overlay-content .btn {
+.my-center .overlay .overlay-content .overlay_btn {
+  margin-top: 20rpx;
+}
+.my-center .overlay .overlay-content .overlay_btn .btn {
   margin-right: 15rpx;
 }
 .my-center .no-tips {
@@ -130,4 +138,5 @@ page {
 .my-center .relation .text {
   color: #fff;
   margin-left: 10rpx;
+  font-size: 30rpx;
 }

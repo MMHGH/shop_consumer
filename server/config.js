@@ -1,14 +1,18 @@
 
-const current = 'dev' //区分开发环境和生产环境，
+const current = 'test' //当前环境
 
 const profiles = {
   'dev': {
     'online': false,
-    'baseURL': 'https://douban.uieee.com' //开发环境地址
+    'baseURL': 'http://192.168.1.189:8808' //开发环境
+  },
+  'test': {
+    'online': false,
+    'baseURL': 'https://store.ta2tattoo.com' //测试环境
   },
   'prod': {
     'online': true,
-    'baseURL': 'https://api.xxx.xxx'//生产环境地址
+    'baseURL': 'https://api.xxx.xxx'//生产环境
   }
 }
 const ENV = profiles[current]

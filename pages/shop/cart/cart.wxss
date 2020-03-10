@@ -35,10 +35,6 @@
 .cart .item .item-info__num {
   width: 25%;
 }
-.cart .item .item-info__num .van-stepper__plus,
-.cart .item .item-info__num .van-stepper__minus {
-  background: #333333;
-}
 .cart .item .item-info__num .van-stepper__input {
   margin: 0 5rpx;
 }

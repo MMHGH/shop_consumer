@@ -1,11 +1,12 @@
 <!--pages/shop/cart/cart.wxml-->
 <view class="container">
+    <!-- <van-stepper value="{{ 1 }}" bind:change="onChangeNum" /> -->
     <view class="cart" wx:if="{{cartListL.length}}">
-        <view class="item" wx:for="{{cartListL}}" wx:key="{{index}}">
+        <view class="item" wx:for="{{cartListL}}" wx:key="index">
             <van-swipe-cell id="swipe-cell" right-width="{{ 65 }}">
                 <view class="item-info flex">
                     <view class="item-info__checked">
-                        <van-checkbox value="{{ item.selected }}" checked-color="#333333" data-index="{{index}}" bind:change="onChangeChecked"></van-checkbox>
+                        <van-checkbox value="{{ item.checked }}" checked-color="#333333" data-index="{{index}}" bind:change="onChangeChecked"></van-checkbox>
                     </view>
                     <view class="item-info__middle">
                        <view class="middle-img">
@@ -13,19 +14,28 @@
                             round
                             width="120rpx"
                             height="120rpx"
-                            src="{{item.url}}"/>
+                            src="{{item.picUrl}}"/>
                        </view>
                         <view class="middle-text">
-                            <view class="brand">{{item.name}}</view>
-                            <view class="taste">{{item.name}}</view>
-                            <view class="prize">￥ {{item.money}}</view>
+                            <view class="brand">{{item.taste}}</view>
+                            <!-- <view class="taste">{{item.name}}</view> -->
+                            <view class="prize">￥ {{item.goodsPrice}}</view>
                         </view>
                     </view>
                     <view class="item-info__num">
-                        <van-stepper input-width="50rpx" disabled="{{!item.num}}" button-size="50rpx" value="{{ 1 }}"  min="1" max="{{item.max}}" integer data-index="{{index}}" bind:change="onChangeNum" />
+                        <van-stepper 
+                          input-width="50rpx" 
+                          button-size="50rpx" 
+                          value="{{ item.number }}" 
+                          min="1"
+                          max="{{ item.max }}" 
+                          integer 
+                          disabled="{{ !item.num }}"
+                          data-index="{{index}}" 
+                          bind:change="onChangeNum" />
                     </view>
                 </view>
-                <view slot="right" data-index="{{index}}" bindtap="del">删除</view>
+                <view slot="right" data-id="{{item.id}}" bindtap="del">删除</view>
             </van-swipe-cell>
         </view>
     </view>

@@ -6,14 +6,14 @@
         <view class="logo">TATTOO</view>
         <view class="text">塔兔蒸汽实验室</view>
      </view>
-     <view class="home-icon" bindtap='checkAuth'>
+     <view class="home-icon" data-type="center" bindtap='checkAuth'>
           <van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
      </view>
     </view>
     <view class="home-content">
-        <view class="item" wx:for="{{list}}" wx:key="{{index}}" bindtap='checkAuth'>
-            <image src="{{item.url}}" class="bg_img"></image>
-            <view>{{item.text}}</view>
+        <view class="item" wx:for="{{list}}" wx:key="{{index}}" data-type="home" data-id="{{item.id}}" data-shopName="{{item.shopName}}" bindtap='checkAuth'>
+            <image src="{{item.banner}}" class="bg_img"></image>
+            <view>{{item.province+item.city+item.area+item.address}}</view>
         </view>
     </view>
   </view>

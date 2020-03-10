@@ -23,7 +23,7 @@ page{
       font-size: 100rpx;
     }
     .grade{
-      line-height: 100rpx;
+      line-height: 80rpx;
       color:#fff;
       text-align: center;
       &-text{
@@ -58,11 +58,19 @@ page{
               &-text{
                 margin-left:15rpx;
               }
+              .status{
+                .statusText{
+                  color:#169bd5;
+                }
+                .num{
+                  text-align: right;
+                }
+              }
             }
           }
           .back-goods{
             text-align: right;
-            margin:10rpx;
+            margin:0 10rpx 10rpx;
           }
         }
         .location-info{
@@ -108,10 +116,12 @@ page{
       }
       .back{
         font-size: 30rpx;
-        margin-bottom: 20rpx;
       }
-      .btn{
-        margin-right:15rpx;
+      .overlay_btn{
+        margin-top:20rpx;
+        .btn{
+          margin-right:15rpx;
+        }
       }
     }
   }
@@ -133,6 +143,7 @@ page{
     .text{
         color:#fff;
         margin-left:10rpx;
+        font-size: 30rpx;
     }
   }
 }

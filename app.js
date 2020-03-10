@@ -14,21 +14,21 @@ App({
         this.login(res);
       }
     })
-    console.log('app.js页面触发')
   },
   login(res){
-    let params = {
-      code: res.code
-    }
-    // server.getRequest(API.getVideoPage,params).then(res => {
-        // if (res.code == 100) {
-        //   wx.setStorageSync('sessionkey', res.data.session_key)
-        //   wx.setStorageSync('openId', res.data.openid)
-        //   wx.setStorageSync('memberId', res.data.memberId)
-        //   wx.setStorageSync('token', res.data.token)
-        // }
-    // })
-
+    server.postRequest(API.getSessionKey,{code:res.code}).then(res => {
+        if (res.code == 100) {
+          wx.setStorageSync('sessionKey', res.data.session_key)
+          wx.setStorageSync('openid', res.data.openid)
+          server.postRequest(API.login,{}).then(res1 => {
+            if (res1.code == 100) {
+              wx.setStorageSync('userToken', res1.data.userToken)
+              wx.setStorageSync('token', res1.data.token)
+              wx.setStorageSync('status', res1.data.status)//是否绑定手机号
+            }
+          })
+        }
+    })
   },
   globalData: {
     userInfo: null

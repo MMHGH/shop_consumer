@@ -15,116 +15,30 @@ Page({
     total:'',
     hasMoreData: true,
     cartListL:[
-      {
-        selected:true,
-        url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg',
-        name:'青瓜味',
-        money:2,
-        count:1,
-        max:3,
-        num:0,
-        isDel:false,
-        id: 0,//商品id
-      },
-      {
-        selected:true,
-        url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg',
-        name:'青瓜味',
-        money:2,
-        count:1,
-        max:3,
-        num:0,
-        isDel:false,
-        id: 0,//商品id
-      },
-      {
-        selected:true,
-        url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg',
-        name:'青瓜味',
-        money:2,
-        count:1,
-        max:3,
-        num:0,
-        isDel:false,
-        id: 0,//商品id
-      },
-      {
-        selected:true,
-        url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg',
-        name:'青瓜味',
-        money:2,
-        count:1,
-        max:3,
-        num:0,
-        isDel:false,
-        id: 0,//商品id
-      },
-      {
-        selected:true,
-        url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg',
-        name:'青瓜味',
-        money:2,
-        count:1,
-        max:3,
-        num:0,
-        isDel:false,
-        id: 0,//商品id
-      },
-      {
-        selected:true,
-        url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg',
-        name:'青瓜味',
-        money:2,
-        count:1,
-        max:3,
-        num:0,
-        isDel:false,
-        id: 0,//商品id
-      },
-      {
-        selected:true,
-        url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg',
-        name:'青瓜味',
-        money:2,
-        count:1,
-        max:3,
-        num:0,
-        isDel:false,
-        id: 0,//商品id
-      },
-      {
-        selected:true,
-        url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg',
-        name:'青瓜味',
-        money:2,
-        count:1,
-        max:3,
-        num:0,
-        isDel:false,
-        id: 0,//商品id
-      },
-      {
-        selected:true,
-        url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg',
-        name:'青瓜味',
-        money:2,
-        count:1,
-        max:3,
-        num:0,
-        isDel:false,
-        id: 0,//商品id
-      },
-      {
-        selected:false,
-        url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg',
-        name:'青瓜味',
-        money:2,
-        isDel:false,
-        count:2,
-        num:1,
-        max:1,
-        id: 0,//商品id
-      },
+      // {
+      //   checked:true,
+      //   picUrl:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg',
+      //   taste:'青瓜味',
+      //   goodsPrice:2,
+      //   count:10,
+      //   max:6,
+      //   number:5,
+      //   num:0,
+      //   isDel:true,
+      //   id: 0,//商品id
+      // },
+      // {
+      //   checked:true,
+      //   picUrl:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg',
+      //   taste:'青瓜味',
+      //   goodsPrice:2,
+      //   count:10,
+      //   max:2,
+      //   number:1,
+      //   num:1,
+      //   isDel:true,
+      //   id: 0,//商品id
+      // },
     ]
   },
 
@@ -135,66 +49,31 @@ Page({
 
   },
   onShow: function() {
-    // this.data.goodsCar = API.orderinfo;
-    this.totalPrice();
+    this.getData();
   },
   getData(){
     let self = this;
-    let params = {
-      apikey:'0df993c66c0c636e29ecbb5344252a4a',
-      start:this.start,
-      count:this.count
-    }
-    let cartListL = this.data.cartListL;
-    this.$service.get(this.$api.managerialStatis.getVideoPage,params).then(res => {
-        // 关闭下拉刷新动画
-        wx.stopPullDownRefresh();
-        // 返回的数据
-        const data = res;
-        // 数据追加  data.list为返回的数据列表
-        if (self.data.pageNum > 1) {
-          cartListL.push(...data.subjects)
-        } else {
-          cartListL = data.subjects
-        }
-        self.setData({
-          cartListL: cartListL,
-          total: data.total
-        })
-        console.log('电影列表',self.data.cartListL)
+    server.getRequest(API.listMemberCart,{}).then(res => {
+      if(res.code == 100){
+         // 返回的数据
+         const data = res.data;
+         self.setData({
+           cartListL: data,
+         })
+        this.totalPrice();
+      }
     })
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.setData({
-      cartListL: [],
-      pageNum: 1
-    })
-    this.getData();
-    wx.showToast({
-      title: `下拉刷新`,
-      icon: 'none'
-    })
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (this.data.cartListL.length > this.data.total) {
-      wx.showToast({
-        title: `数据加载完了`,
-        icon: 'none'
-      })
-    } else {
-      // 下一页
-      this.setData({
-        pageNum: this.data.pageNum += 1,
-      }) 
-      this.getData();
-    }
   },
   open(e){
     let index = e.currentTarget.dataset.index;
@@ -218,28 +97,46 @@ Page({
     console.log(e)
     let index = e.currentTarget.dataset.index;
     // 获取商品列表
-    let list = this.data.cartListL;
-    list[index].selected = !list[index].selected;
+    // let list = this.data.cartListL;
+    // list[index].selected = !list[index].selected;
     // 重新渲染数据
-    this.setData({
-      cartListL: list,
-    }) 
-    this.totalPrice();     
+    // this.setData({
+    //   cartListL: list,
+    // }) 
+    this.updateShoppingCart('checked',index);
+    // this.totalPrice();     
   },
   onChangeNum(e) {
-    console.log(e);
+    console.log(66,e);
     const index = e.currentTarget.dataset.index;
     const currentCount = e.detail;
+    // let list = this.data.cartListL;
+    // list[index].count = currentCount;
+    // this.setData({
+    //   cartListL: list
+    // });
+    // this.totalPrice();
+    this.updateShoppingCart('change',index);
+  },
+  updateShoppingCart(type,index){
+    if(type == 'checked'){
+      
+    }
     let list = this.data.cartListL;
-    list[index].count = currentCount;
-    this.setData({
-      cartListL: list
-    });
-    this.totalPrice();
+    let params = {
+      id:list[index].id,
+      number:1,
+      goodsId:'',
+      checked:''
+    }
+    server.postRequest(API.updateShoppingCart,params).then(res => {
+      if(res.code == 100){
+        that.getData()
+      }
+    })
   },
   del(e){
     var that = this;
-    const index = e.currentTarget.dataset.index;
     // 获取商品列表数据
     let list = this.data.cartListL;
     wx.showModal({
@@ -247,14 +144,14 @@ Page({
       content: '确认删除吗',
       success: function(res) {
         if (res.confirm) {
-          // 删除索引从1
-          list.splice(index, 1);
-          // 页面渲染数据
-          that.setData({
-            cartListL: list
-          });
-          // 调用金额渲染数据
-          that.totalPrice();
+          let params = {
+            id:e.currentTarget.dataset.id
+          }
+          server.getRequest(API.listGoodsBrandForSelect,params).then(res => {
+            if(res.code == 100){
+              that.getData()
+            }
+          })
         } 
       },
       fail: function(res) {
