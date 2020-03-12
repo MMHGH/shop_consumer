@@ -21,7 +21,8 @@
   margin-left: 15rpx;
 }
 .cart .item .item-info__middle .middle-text .brand {
-  margin-top: 5rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
 }
 .cart .item .item-info__middle .middle-text .taste {
   margin-bottom: 20rpx;

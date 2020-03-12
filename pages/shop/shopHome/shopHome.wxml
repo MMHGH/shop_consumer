@@ -1,12 +1,27 @@
 
 <view class='shop'>
-        <view class='header'>南山店</view>
+        <view class='header'>{{shopName}}</view>
         <view class='main'>
             <view class='main-left'>
                 <scroll-view  scroll-y="true" style="height: 100%" class='y' >
                     <van-sidebar  active-key="{{ activeKey }}" bind:change="onChange">
                         <van-sidebar-item wx:for="{{brandList}}" wx:key="{{index}}" title="{{item.name}}" />
                     </van-sidebar>
+                    <!-- <view class="brand">
+                        <view 
+                          class="brand-title {{activeBrand == brandIndex?'activeBanner':''}}" 
+                          wx:for="{{brandList}}" 
+                          wx:for-item="brandItem" 
+                          wx:for-index="brandIndex"
+                          data-index="{{brandIndex}}"
+                          bindtap="changeBrand" 
+                          wx:key="brandItem">
+                            <text class="text">{{brandItem.name}}</text>
+                              <view class="category" wx:for="{{ categoryList }}" wx:key="{{index}}" wx:for-item="categoryItem" wx:for-index="categoryIndex" wx:key="categoryItem">
+                                    {{categoryItem.catName}}
+                              </view>
+                        </view> -->
+                    <!-- </view> -->
                 </scroll-view> 
             </view>
             <view class='main-right'>
@@ -23,7 +38,7 @@
                         </view>
                         <view class="grid-info">
                             <van-grid column-num="3" border="{{ false }}">
-                                <van-grid-item data-id="{{item.id}}" bindtap="addCart" use-slot wx:for="{{ categoryList }}" wx:key="{{index}}">
+                                <van-grid-item data-id="{{item.id}}" data-index="{{index}}" bindtap="toGoodsList" use-slot wx:for="{{ categoryList }}" wx:key="{{index}}">
                                     <image
                                     class="img"
                                     mode='aspectFill'

@@ -40,8 +40,8 @@
                 <view class="back-goods" wx:if="{{orders.tradeStatus == 0}}">
                     <van-button size="mini" data-money="{{orders.orderAmout}}" data-orderno="{{orders.orderNo}}" catchtap="salesReturn">退货</van-button>
                 </view>
-                <view class="location-info motifBg flex" wx:if="{{orders.tradeStatus == 0}}" data-list="{{item}}" catchtap="openLocation">
-                    <text class="location-info__name flex_1">深圳深圳市南山区深圳市南</text>
+                <view class="location-info motifBg flex" wx:if="{{orders.tradeStatus == 0}}" data-local="{{ordersIndex}}" catchtap="openLocation">
+                    <text class="location-info__name flex_1">{{orders.shop.province+orders.shop.city+orders.shop.area+orders.shop.address}}</text>
                     <van-icon class="location-info__icon" name="location-o" color="#e9b708"/>
                 </view>
            </view>

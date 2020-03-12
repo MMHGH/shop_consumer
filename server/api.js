@@ -5,6 +5,7 @@ const api = {
     getWXPhone: '/api/login/getWXPhone',//根据微信加密数据获取
     listShop: '/api/member/listShop',//门店列表
     listMyOrders: '/api/order/listMyOrders',//订单列表
+    listGoods: '/api/goods/listGoods',//商品列表
     listGoodsBrandForSelect: '/api/goods/listGoodsBrandForSelect',//商品品牌列表
     listGoodsCategoryForSelect: '/api/goods/listGoodsCategoryForSelect',//分类列表
     addShoppingCart: '/api/goods/addShoppingCart',//加入购物车
@@ -13,6 +14,7 @@ const api = {
     getShoppingCartCount: '/api/goods/getShoppingCartCount',//查询购物车总数
     updateShoppingCart: '/api/goods/updateShoppingCart',//更新购物车
     refund: '/api/order/refund',//退货
+    getRecentContacts: '/api/member/getRecentContacts',//退货
     orderWxPay: '/api/order/orderWxPay ',//微信支付
   }
 

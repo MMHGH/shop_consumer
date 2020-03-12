@@ -2,13 +2,16 @@
   "pages": [
     "pages/index/index",
 
-    "pages/myCenter/myCenter",
+    "pages/shop/goodsList/goodsList",
 
-    "pages/shop/cart/cart",
+    "pages/shop/paymentInfo/paymentInfo",
 
     "pages/shop/shopHome/shopHome",
 
-    "pages/shop/paymentInfo/paymentInfo"
+    "pages/shop/cart/cart",
+
+    "pages/myCenter/myCenter"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

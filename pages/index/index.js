@@ -7,7 +7,7 @@ const API = require('../../server/api.js')
 Page({
   data: {
     userInfo: {},
-    hasUserInfo: false,
+    hasUserInfo: false, 
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
 
     show:false,
@@ -46,7 +46,7 @@ Page({
     let isBindPhone =  Number(wx.getStorageSync('status'));
     this.setData({ type: e.currentTarget.dataset.type });
     wx.setStorageSync('shopId', e.currentTarget.dataset.id)
-    wx.setStorageSync('shopName', e.currentTarget.dataset.shopName)
+    wx.setStorageSync('shopName', e.currentTarget.dataset.shopname)
     if(isBindPhone){
       wx.navigateTo({
         url:this.data.type == 'center'?"/pages/myCenter/myCenter":"/pages/shop/shopHome/shopHome"
@@ -78,6 +78,7 @@ Page({
               if (res1.code == 100) {
                 let phone = res.data.phoneNumber
                 wx.setStorageSync('phone', phone)
+                wx.setStorageSync('userToken', res1.data.userToken)
                 wx.navigateTo({
                   url:this.data.type == 'center'?"/pages/myCenter/myCenter":"/pages/shop/shopHome/shopHome"
                 })

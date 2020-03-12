@@ -1,0 +1,46 @@
+.goods-list .header {
+  justify-content: center;
+}
+.goods-list .search {
+  width: 500rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border: 1px solid #333333;
+  border-radius: 50rpx;
+  display: flex;
+  align-items: center;
+}
+.goods-list .search .icon {
+  font-size: 43rpx;
+  padding-left: 10rpx;
+}
+.goods-list .search .input {
+  padding-left: 10rpx;
+  font-size: 33rpx;
+}
+.goods-list .search-text {
+  margin-left: 20rpx;
+  color: #333333;
+  margin-top: 3rpx;
+}
+.goods-list .main-list .list-text {
+  margin-top: 20rpx;
+  font-size: 35rpx;
+}
+.goods-list .main-list .list-text .prize {
+  color: #f64554;
+  font-size: 30rpx;
+}
+.goods-list .add-cart {
+  position: fixed;
+  right: 20rpx;
+  bottom: 150rpx;
+  padding: 25rpx;
+  border-radius: 30rpx;
+  display: flex;
+  align-items: center;
+}
+.goods-list .add-cart .text {
+  color: #fff;
+  margin-left: 10rpx;
+}

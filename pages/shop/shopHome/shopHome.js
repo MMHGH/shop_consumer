@@ -10,34 +10,11 @@ Page({
   data: {
     activeKey: 0,
     brandId:'',
-    brandList:[
-      // {
-      //   name: 'aa',
-      //   content: 'bb'
-      // }, {
-      //   name: 'aa',
-      //   content: 'bb'
-      // }, {
-      //   name: 'aa',
-      //   content: 'bb'
-      // }, {
-      //   name: 'aa',
-      //   content: 'bb'
-      // }, {
-      //   name: 'aa',
-      //   content: 'bb'
-      // }, {
-      //   name: 'aa',
-      //   content: 'bb'
-      // }, {
-      //   name: 'aa',
-      //   content: 'bb'
-      // }, {
-      //   name: 'aa',
-      //   content: 'bb'
-      // },
-    ],
+    activeBrand:0,
+    categoryActive:0,
+    brandList:[],
     categoryList:[],
+    goodList:[],
     swiperList:[
       {
         url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg'
@@ -47,14 +24,16 @@ Page({
       },
     ],
     cartTotal:'',
-    goodList:new Array(4)
+    shopName:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      shopName: wx.getStorageSync('shopName')
+    });
   },
   /**
    * 生命周期函数--监听页面显示
@@ -62,6 +41,18 @@ Page({
   onShow: function () {
     this.getBrandList();
     this.getCartTotal();
+  },
+  changeBrand(e){
+    this.setData({
+      activeBrand: e.currentTarget.dataset.index
+    });
+  },
+  onChange(e) {
+    let index = e.detail;
+    this.setData({
+      brandId: this.data.brandList[index].id
+   });
+   this.getCategoryList()
   },
   getBrandList(){
     let params = {
@@ -83,9 +74,11 @@ Page({
     }
     server.getRequest(API.listGoodsCategoryForSelect,params).then(res => {
       if(res.code == 100){
+        let categoryList = res.data;
         this.setData({
-          categoryList: res.data
-       });
+          categoryList: categoryList
+        });
+        // this.getGoodList();
       }
     })
   },
@@ -98,12 +91,11 @@ Page({
       }
     })
   },
-  onChange(e) {
-    let index = e.detail;
-    this.setData({
-      brandId: this.data.brandList[index].id
-   });
-   this.getCategoryList()
+  toGoodsList(e){
+    let index = e.currentTarget.dataset.index;
+    wx.navigateTo({
+      url:`/pages/shop/goodsList/goodsList?brandId=${this.data.categoryList[index].brandId}&categoryId=${this.data.categoryList[index].id}`
+    })
   },
   addCart(e){
     let params = {

@@ -1,6 +1,7 @@
 // pages/shop/paymentInfo/paymentInfo.js
 const server = require('../../../server/server.js')
 const API = require('../../../server/api.js')
+const tips = require("../../../utils/tips");
 
 Page({
 
@@ -26,7 +27,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getRecentContacts();
+  },
+  getRecentContacts(){
+    server.getRequest(API.getRecentContacts,{}).then(res => {
+      if(res.code == 100){
+        if(res.data){
+          this.setData({
+            userName: res.data.contactName,
+            phone: res.data.contactNumber
+          });
+        }
+      }
+    })
   },
   getName(e){
     this.setData({ userName: e.detail });
@@ -59,31 +72,29 @@ Page({
     })
   },
   pay(){
-    var that=this;
     let params = {
-        openid:res.data,
-        fee: that.data.totalPrice, //支付金额
-        details: that.data.goodsList[0].goods_name,//支付商品的名称
+        contactName:this.data.userName,
+        contactNumber:this.data.phone,
+        formId:'',
+        shopId:wx.getStorageSync('shopId'),
     }
     server.postRequest(API.orderWxPay,params).then(res => {
-      if(result.data){
+      console.log('数据返回',res.data,res.data['timeStamp']);
+      if(res.code == 100){
         wx.requestPayment({
-          timeStamp: result.data['timeStamp'],
-          nonceStr: result.data['nonceStr'],
-          package: result.data['package'],
+          timeStamp: res.data['timeStamp'],
+          nonceStr: res.data['nonceStr'],
+          package: 'prepay_id='+res.data['prepayId'],
           signType: 'MD5',
-          paySign: result.data['paySign'],
+          paySign: res.data['paySign'],
           success:function(successret){
-              console.log('支付成功');
-              if (res.errMsg == "requestPayment:ok") {
-                // 发送请求
-                // server.getRequest(API.getVideoPage,params).then(res => {
-                  setTimeout(function () {
+              if (successret.errMsg == "requestPayment:ok") {
+                  // 发送请求
+                  tips.showSuccess("支付成功!"), setTimeout(function () {
                       wx.navigateTo({
                           url: "/pages/myCenter/myCenter"
                       })
                   }, 500)
-                // })
               }
           },
           fail:function(res){

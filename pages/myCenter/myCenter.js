@@ -155,12 +155,14 @@ Page({
     })
   },
   openLocation(e){
-    console.log(111,e)
+    let index = e.currentTarget.dataset.local;
+    let orderList = this.data.orderList;
+    let address = orderList[index].shop.province+orderList[index].shop.city+orderList[index].shop.area+orderList[index].shop.address;
     wx.openLocation({
-      longitude: Number(e.currentTarget.dataset.list.longitude),
-      latitude: Number(e.currentTarget.dataset.list.latitude),
-      name: e.currentTarget.dataset.list.name,
-      address: e.currentTarget.dataset.list.address
+      longitude: +orderList[index].shop.longitude,
+      latitude: +orderList[index].shop.latitude,
+      name: orderList[index].shop.shopName,
+      address: address
     }) 
   },
   seleteReason(e){
@@ -174,7 +176,7 @@ Page({
     }
     let params = {
       orderNo:this.data.orderNo,
-      reason:this.data.active
+      reason:this.data.active+1
     }
     server.postRequest(API.refund,params).then(res => {
       if(res.code == 100){
@@ -189,7 +191,7 @@ Page({
     this.setData({
       show: true,
       active:'',
-      orderAmout:e.currentTarget.dataset.money,
+      orderAmout:e.currentTarget.dataset.payAmount,
       orderNo:e.currentTarget.dataset.orderno
     })
   },
@@ -200,7 +202,7 @@ Page({
   },
   shopHome(){
     wx.navigateTo({
-      url:"pages/index/index"
+      url:"/pages/index/index"
     })
   }
 })

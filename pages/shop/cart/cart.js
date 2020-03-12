@@ -95,6 +95,7 @@ Page({
   },
   onChangeChecked(e) {
     console.log(e)
+    let currentChecked = e.detail;
     let index = e.currentTarget.dataset.index;
     // 获取商品列表
     // let list = this.data.cartListL;
@@ -103,35 +104,36 @@ Page({
     // this.setData({
     //   cartListL: list,
     // }) 
-    this.updateShoppingCart('checked',index);
-    // this.totalPrice();     
+    this.updateShoppingCart('checked',index,currentChecked);
   },
   onChangeNum(e) {
     console.log(66,e);
-    const index = e.currentTarget.dataset.index;
-    const currentCount = e.detail;
+    let index = e.currentTarget.dataset.index;
+    let constcurrentCount = e.detail;
     // let list = this.data.cartListL;
     // list[index].count = currentCount;
     // this.setData({
     //   cartListL: list
     // });
     // this.totalPrice();
-    this.updateShoppingCart('change',index);
+    this.updateShoppingCart('change',index,constcurrentCount);
   },
-  updateShoppingCart(type,index){
-    if(type == 'checked'){
-      
-    }
+  updateShoppingCart(type,index,value){
     let list = this.data.cartListL;
     let params = {
       id:list[index].id,
-      number:1,
-      goodsId:'',
-      checked:''
+      goodsId:list[index].goodsId,
+    }
+    if(type == 'checked'){
+      params.number = list[index].number;
+      params.checked = value;
+    }else{
+      params.number = value;
+      params.checked = list[index].checked;
     }
     server.postRequest(API.updateShoppingCart,params).then(res => {
       if(res.code == 100){
-        that.getData()
+        this.getData()
       }
     })
   },
@@ -147,7 +149,7 @@ Page({
           let params = {
             id:e.currentTarget.dataset.id
           }
-          server.getRequest(API.listGoodsBrandForSelect,params).then(res => {
+          server.getRequest(API.delShoppingCart,params).then(res => {
             if(res.code == 100){
               that.getData()
             }
@@ -164,13 +166,11 @@ Page({
     let list = this.data.cartListL;
     let total = 0;
     for (let i = 0; i < list.length; i++) {
-      if (list[i].selected) {
-        total += list[i].count * list[i].money;
+      if (list[i].checked) {
+        total += list[i].number * Number(list[i].goodsPrice);
       }
     }
-    // 最后赋值到data中渲染到页面
     this.setData({
-      cartListL: list,
       totalPrice: total.toFixed(2)
     });
   },

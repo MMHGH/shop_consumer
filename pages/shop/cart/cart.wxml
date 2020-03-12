@@ -28,9 +28,9 @@
                           button-size="50rpx" 
                           value="{{ item.number }}" 
                           min="1"
-                          max="{{ item.max }}" 
+                          max="{{ item.inventory }}" 
                           integer 
-                          disabled="{{ !item.num }}"
+                          disabled="{{ !item.inventory }}"
                           data-index="{{index}}" 
                           bind:change="onChangeNum" />
                     </view>
