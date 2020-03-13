@@ -1,5 +1,10 @@
+page {
+  background: #f8f8f8;
+}
 .goods-list .header {
+  margin-top: 20rpx;
   justify-content: center;
+  margin-bottom: 20rpx;
 }
 .goods-list .search {
   width: 500rpx;
@@ -23,6 +28,12 @@
   color: #333333;
   margin-top: 3rpx;
 }
+.goods-list .main-list .item .van-grid-item {
+  padding: 10rpx;
+}
+.goods-list .main-list .item .van-grid-item .van-grid-item__content {
+  border-radius: 20rpx;
+}
 .goods-list .main-list .list-text {
   margin-top: 20rpx;
   font-size: 35rpx;
@@ -30,6 +41,18 @@
 .goods-list .main-list .list-text .prize {
   color: #f64554;
   font-size: 30rpx;
+}
+.goods-list .main-list .item-cart {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  background: #333333;
+  position: absolute;
+  right: 30rpx;
+  bottom: 30rpx;
+  padding: 5rpx;
+  display: flex;
+  justify-content: center;
 }
 .goods-list .add-cart {
   position: fixed;

@@ -23,7 +23,8 @@ App({
           server.postRequest(API.login,{}).then(res1 => {
             if (res1.code == 100) {
               wx.setStorageSync('userToken', res1.data.userToken)
-              wx.setStorageSync('token', res1.data.token)
+              wx.setStorageSync('level', res1.data.level)
+              wx.setStorageSync('point', res1.data.point)
               wx.setStorageSync('status', res1.data.status)//是否绑定手机号
             }
           })

@@ -6,7 +6,7 @@
             <van-swipe-cell id="swipe-cell" right-width="{{ 65 }}">
                 <view class="item-info flex">
                     <view class="item-info__checked">
-                        <van-checkbox value="{{ item.checked }}" checked-color="#333333" data-index="{{index}}" bind:change="onChangeChecked"></van-checkbox>
+                        <van-checkbox value="{{ item.checked }}" disabled="{{!item.inventory}}" checked-color="#333333" data-index="{{index}}" bind:change="onChangeChecked"></van-checkbox>
                     </view>
                     <view class="item-info__middle">
                        <view class="middle-img">
@@ -40,9 +40,9 @@
         </view>
     </view>
     <view class='no_shop' wx:if="{{!cartListL.length}}">
-        <text class='on_shop_txt'>购物车空空如也</text>
+        <text class='on_shop_txt'>「购物车还没有东西，去门店逛逛」</text>
         <navigator url="/pages/shop/shopHome/shopHome"  hover-class="none">
-            <text class='txt_btn'>去主页逛逛吧</text>
+            <text class='txt_btn'>点击跳转到门店</text>
         </navigator>
     </view>
     <view class="fotter white motifBg">

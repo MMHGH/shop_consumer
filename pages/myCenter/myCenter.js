@@ -12,8 +12,10 @@ Page({
     show:false,
     active:'',
     orderNo:'',
-    orderAmout:'',
-    memberOrder:1,
+    payAmount:'',
+    level:'',
+    point:'',
+    scrollTop: 5, // 设定触发条件的距离
     reasonList:[
       '不想要了',
       '拍错宝贝，重新下单',
@@ -21,89 +23,36 @@ Page({
     ],
     serviceTips:'无法取货\n联系客服',
     noTips:'空空如也\n赶紧囤点口粮吧',
-    orderList: [
-      // {
-      //   consignee: "string",
-      //   createdBy: "string",
-      //   createdTime: "2020-03-10T07:36:03.122Z",
-      //   deliveryMoney: 0,
-      //   goodsList: [
-      //     {
-      //       brandId: 0,
-      //       brandName: "Tattoo",
-      //       categoryId: 0,
-      //       categoryName: "string",
-      //       createdBy: 0,
-      //       createdTime: "2020-03-10T07:36:03.123Z",
-      //       goodsName: "string",
-      //       goodsPrice: 9.9,
-      //       id: 0,
-      //       inventory: 0,
-      //       isDel: 0,
-      //       picUrl: "https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg",
-      //       remark: "string",
-      //       shopId: 0,
-      //       status: 0,
-      //       taste: "string",
-      //       updateBy: 0,
-      //       updateTime: "2020-03-10T07:36:03.123Z"
-      //     },
-      //     {
-      //       brandId: 0,
-      //       brandName: "Tattoo",
-      //       categoryId: 0,
-      //       categoryName: "string",
-      //       createdBy: 0,
-      //       createdTime: "2020-03-10T07:36:03.123Z",
-      //       goodsName: "string",
-      //       goodsPrice: 9.9,
-      //       id: 0,
-      //       inventory: 0,
-      //       isDel: 0,
-      //       picUrl: "https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg",
-      //       remark: "string",
-      //       shopId: 0,
-      //       status: 0,
-      //       taste: "string",
-      //       updateBy: 0,
-      //       updateTime: "2020-03-10T07:36:03.123Z"
-      //     },
-      //   ],
-      //   goodsNumber: 0,
-      //   id: "string",
-      //   memberId: "string",
-      //   orderAmout: 0,
-      //   orderNo: "string",
-      //   payAmount: 0,
-      //   payStatus: 0,
-      //   payTime: "2020-03-10T07:36:03.125Z",
-      //   phone: "string",
-      //   remark: "string",
-      //   shopId: 0,
-      //   tradeStatus: 0,//0-进行中,1-已完成，2-取消交易，3-订单已退费 ,
-      //   verifyCode: "11",
-      //   verifyUserId: 0
-      // },
-    ]
+    orderList: [],
+    avatarUrl:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      avatarUrl:wx.getStorageSync('avatarUrl'),
+      level: wx.getStorageSync('level'),
+      point: wx.getStorageSync('point')
+    })
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
     this.getListMyOrders();
   },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    this.getListMyOrders();
+  },
   getListMyOrders(){
     let params = {
       pageNum:1,
-      pageSize:500,
+      pageSize:100,
       isToken:''
     }
     server.postRequest(API.listMyOrders, params).then(res => {
@@ -151,7 +100,7 @@ Page({
   },
   callUp(){
     wx.makePhoneCall({
-      phoneNumber: '18320745976',
+      phoneNumber: '18038032812',
     })
   },
   openLocation(e){
@@ -191,7 +140,7 @@ Page({
     this.setData({
       show: true,
       active:'',
-      orderAmout:e.currentTarget.dataset.payAmount,
+      payAmount:e.currentTarget.dataset.money,
       orderNo:e.currentTarget.dataset.orderno
     })
   },
@@ -201,7 +150,7 @@ Page({
     })
   },
   shopHome(){
-    wx.navigateTo({
+    wx.redirectTo({
       url:"/pages/index/index"
     })
   }

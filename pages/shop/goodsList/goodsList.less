@@ -1,7 +1,13 @@
+page{
+    background: #f8f8f8;
+}
 .goods-list{
     .header{
         // line-height: 50rpx;
+        margin-top:20rpx;
         justify-content: center;
+        margin-bottom: 20rpx;
+        // background: #fff;
     }
     .search{
         width:500rpx;
@@ -28,7 +34,12 @@
     .main{
         &-list{
             .item{
-                // padding:20rpx;
+                .van-grid-item {
+                    padding:10rpx;
+                    .van-grid-item__content {
+                        border-radius: 20rpx;
+                    }
+                }
             }
             .list-text{
                 margin-top:20rpx;
@@ -37,6 +48,18 @@
                     color:#f64554;
                     font-size: 30rpx;
                 }
+            }
+            .item-cart{
+                width:60rpx;
+                height:60rpx;
+                border-radius: 50%;
+                background: #333333;
+                position: absolute;
+                right:30rpx;
+                bottom: 30rpx;
+                padding:5rpx;
+                display: flex;
+                justify-content: center;
             }
         }
     }

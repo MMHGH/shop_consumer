@@ -1,17 +1,11 @@
 {
   "pages": [
     "pages/index/index",
-
     "pages/shop/goodsList/goodsList",
-
     "pages/shop/paymentInfo/paymentInfo",
-
     "pages/shop/shopHome/shopHome",
-
     "pages/shop/cart/cart",
-
     "pages/myCenter/myCenter"
-
   ],
   "window": {
     "backgroundTextStyle": "light",

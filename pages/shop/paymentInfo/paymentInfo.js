@@ -2,6 +2,7 @@
 const server = require('../../../server/server.js')
 const API = require('../../../server/api.js')
 const tips = require("../../../utils/tips");
+import Toast from '@vant/weapp/toast/toast';
 
 Page({
 
@@ -60,7 +61,7 @@ Page({
        this.setData({ errorMsgPhone: '请输入手机号' });
        return
     }
-    if(!(/^1[34578]\d{9}$/.test(this.data.phone))){
+    if(!(/^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/.test(this.data.phone))){
        this.setData({ errorMsgPhone: '手机号格式错误' });
        return
     }
@@ -78,8 +79,13 @@ Page({
         formId:'',
         shopId:wx.getStorageSync('shopId'),
     }
+    Toast.loading({
+      mask: true,
+      message: '支付中...'
+    });
     server.postRequest(API.orderWxPay,params).then(res => {
       console.log('数据返回',res.data,res.data['timeStamp']);
+      Toast.clear();
       if(res.code == 100){
         wx.requestPayment({
           timeStamp: res.data['timeStamp'],
@@ -91,7 +97,7 @@ Page({
               if (successret.errMsg == "requestPayment:ok") {
                   // 发送请求
                   tips.showSuccess("支付成功!"), setTimeout(function () {
-                      wx.navigateTo({
+                      wx.redirectTo({
                           url: "/pages/myCenter/myCenter"
                       })
                   }, 500)

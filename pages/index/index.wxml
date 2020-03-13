@@ -2,19 +2,28 @@
 
 <view class="container">
   <view class="home">
-    <view class="flex">
-      <view class="home-logo flex_1">
-        <view class="logo">TATTOO</view>
-        <view class="text">塔兔蒸汽实验室</view>
-     </view>
-     <view class="home-icon" data-type="center" bindtap='checkAuth'>
-          <van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
-     </view>
+    <view class="home-header">
+      <view class="header flex">
+        <view class="home-logo flex_1">
+            <view class="logo">TATTOO</view>
+            <view class="text">塔兔蒸汽实验室</view>
+        </view>
+        <view class="home-icon" data-type="center" bindtap='checkAuth'>
+            <van-image
+              round
+              width="100rpx"
+              height="100rpx"
+              wx:if="{{userInfo.avatarUrl}}"
+              src="{{userInfo.avatarUrl}}"
+            />
+            <van-icon wx:else name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
+        </view>
+      </view>
     </view>
     <view class="home-content">
         <view class="item" wx:for="{{list}}" wx:key="{{index}}" data-type="home" data-id="{{item.id}}" data-shopname="{{item.shopName}}" bindtap='checkAuth'>
             <image src="{{item.banner}}" class="bg_img"></image>
-            <view>{{item.province+item.city+item.area+item.address}}</view>
+            <view class="address">{{item.province+item.city+item.area+item.address}}</view>
         </view>
     </view>
   </view>
@@ -23,7 +32,25 @@
     <text class="forbid">禁止</text>
     未成年购买使用
   </view>
-
+  <van-popup
+    show="{{ showUserInfo }}"
+    closeable
+    position="bottom"
+    custom-style="height: 100%"
+    bind:close="closeUser">
+    <view class="userInfo">
+      <van-icon class="icon" name="chat" color="#333333" />
+      <text class="apply">
+        申请获取以下权限
+      </text>
+      <text class="acquire">
+        获取你的公开信息(昵称,头像等)
+      </text>
+      <view class="">
+        <button class="btn" open-type='getUserInfo' lang='zh_CN' bindgetuserinfo="getUserInfo">授权登录</button>
+      </view>
+    </view>
+  </van-popup>
   <van-popup
     show="{{ show }}"
     round
@@ -32,10 +59,10 @@
     custom-style="height: 35%"
     bind:close="onClose">
     <view class="auth flex">
-      <view class="login-tips">请先授权登录</view>
+      <view class="login-tips">请先授权</view>
       <view class="login-auth">申请获取你的手机号</view>
       <view class="login-btn">
-        <button class='btn pop_btn' plain="true" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">立即登录</button>
+        <button class='btn pop_btn' plain="true" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">绑定手机号</button>
       </view>
     </view>
   </van-popup>

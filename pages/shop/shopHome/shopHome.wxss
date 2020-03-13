@@ -38,7 +38,7 @@
   background: #fff;
 }
 .shop .main-right {
-  margin: 0 0 50rpx 200rpx;
+  margin: 0 0 50rpx 170rpx;
   text-align: right;
   overflow: hidden;
   width: 100%;

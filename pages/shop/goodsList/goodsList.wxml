@@ -3,7 +3,7 @@
     <view class="header flex">
       <view class="search">
         <van-icon class="icon" name="search" />
-        <input class="input weui-input" bindinput="getValue" auto-focus placeholder="请输入你喜欢的商品"/>  
+        <input class="input weui-input" bindinput="getValue" placeholder="请输入你喜欢的商品"/>  
       </view>
       <text class="search-text" bindtap="searchData">搜索</text>
     </view>
@@ -11,7 +11,7 @@
         <view class="main-list">
             <van-grid column-num="2" center="{{false}}" border="{{ false }}">
                <view class="item">
-                <van-grid-item use-slot data-id="{{item.id}}" data-index="{{item.index}}" bindtap="addCart" use-slot wx:for="{{ goodList }}" wx:key="{{index}}">
+                  <van-grid-item use-slot  use-slot wx:for="{{ goodList }}" wx:key="{{index}}">
                     <image
                       style="width: 100%; height: 200rpx;"
                       src="{{item.picUrl}}"
@@ -22,12 +22,12 @@
                       </view>
                       <text class="prize">￥{{item.goodsPrice}}</text>
                     </view>
+                    <view class="item-cart" data-id="{{item.id}}" data-index="{{item.index}}"  bindtap="addCart">
+                        <van-icon name="shopping-cart-o" size="20px" color="#fff"/>
+                    </view>
                   </van-grid-item>
                </view>
             </van-grid>
-            <!-- <view class="">
-                
-            </view> -->
         </view>
     </view>
     <view class="add-cart motifBg" bindtap="toCart">

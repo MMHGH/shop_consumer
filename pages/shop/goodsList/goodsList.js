@@ -123,11 +123,15 @@ Page({
         this.setData({
           cartTotal: res.data
         });
+        wx.showToast({
+          title: `加入购物车成功`,
+          icon: 'none'
+        })
       }
     })
   },
   toCart(){
-    wx.navigateTo({
+    wx.redirectTo({
       url:"/pages/shop/cart/cart"
     })
   }

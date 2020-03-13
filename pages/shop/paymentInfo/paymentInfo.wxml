@@ -34,4 +34,5 @@
         <text class="forbid">禁止</text>
         未成年购买使用
     </view>
+    <van-toast id="van-toast" />
 </view>

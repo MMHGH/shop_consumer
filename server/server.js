@@ -1,5 +1,6 @@
 const ENV = require('./config.js')
 const baseUrl = ENV.baseURL;
+import Toast from '@vant/weapp/toast/toast';
 
 const http = ({url,param  = {},method = 'GET'})=>{
     param = { ...param, openid: wx.getStorageSync('openid') }
@@ -14,6 +15,7 @@ const http = ({url,param  = {},method = 'GET'})=>{
         },
         success: res => {
           if (res.data.code != 100) {
+            Toast.clear();
             wx.showToast({
               title: res.data.message,
               icon: 'none'

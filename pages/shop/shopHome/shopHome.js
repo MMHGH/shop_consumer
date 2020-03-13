@@ -93,7 +93,7 @@ Page({
   },
   toGoodsList(e){
     let index = e.currentTarget.dataset.index;
-    wx.navigateTo({
+    wx.redirectTo({
       url:`/pages/shop/goodsList/goodsList?brandId=${this.data.categoryList[index].brandId}&categoryId=${this.data.categoryList[index].id}`
     })
   },

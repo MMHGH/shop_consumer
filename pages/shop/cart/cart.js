@@ -175,9 +175,15 @@ Page({
     });
   },
   payment(){
-    // wx.setStorageSync('paymentAmount', this.data.totalPrice)
+    if(this.data.totalPrice == 0){
+      wx.showToast({
+        title: `请选择商品`,
+        icon: 'none'
+      })
+      return;
+    }
     // 进入付款信息
-    wx.navigateTo({
+    wx.redirectTo({
       url:`/pages/shop/paymentInfo/paymentInfo?totalPrice=${this.data.totalPrice}`
     })
   }
