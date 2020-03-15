@@ -17,33 +17,43 @@
             position: fixed;
             width:200rpx;
             height:100%;
-            .van-sidebar {
+            .brand-cell{
                 text-align: center;
-                margin-bottom:200rpx;
+                .van-cell {
+                   padding:40rpx 16rpx;
+                }
             }
-            .van-sidebar-item--selected{
-                // border-color:#333333;
-                background: #333333;
-                color:#fff;
-                border:none;
+            .activeBrand{
+                .van-cell {
+                    color:#fff;
+                    background:#333333;
+                }
             }
-            .brand{
-               &-title{
-                 line-height: 50rpx;
-                 background: #fff;
-               } 
-               .activeBanner{
-                //    color:#fff;
-                  background: #333333;
-               }
-               .category{
-                   border:1px solid red;
-                  background: #fff;
-               }
+            .noActive{
+                .van-cell {
+                    font-weight: 600;
+                    background:#fafafa;
+                }
+            }
+            .noCategory{
+                .van-collapse-item__content {
+                    padding:0;
+                    font-weight: 600;
+                }
+            }
+            .category-list{
+                color:#333333;
+                .item{
+                    padding:20rpx 0;
+                }
+                .activeCategory{
+                    color:#39ae99;
+                    font-weight: 600;
+                }
             }
         }
         &-right{
-            margin:0 0 50rpx 170rpx;
+            margin:0 0 50rpx 200rpx;
             text-align: right;
             overflow: hidden;
             width:100%;
@@ -60,6 +70,7 @@
                     }
                 }
                 .grid-info{
+                    font-size: 30rpx;
                     .img{
                         width: 100rpx; 
                         height: 100rpx;
@@ -67,9 +78,12 @@
                         margin-bottom: 10rpx;
                    }
                    .text{
-                       font-size: 30rpx;
-                       text-align: center;
-                   }
+                        text-align: center;
+                    }
+                   .prize{
+                        color:#f64554;
+                        // font-size: 28rpx;
+                    }
                 }
             }
         }

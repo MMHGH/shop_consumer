@@ -13,6 +13,7 @@ Page({
     pageNum: 1,
     pageSize: 30,
     total:'',
+    hasCartList:false,
     hasMoreData: true,
     cartListL:[
       // {
@@ -46,7 +47,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
   },
   onShow: function() {
     this.getData();
@@ -59,6 +59,7 @@ Page({
          const data = res.data;
          self.setData({
            cartListL: data,
+           hasCartList:!data.length?true:false
          })
         this.totalPrice();
       }
@@ -183,7 +184,7 @@ Page({
       return;
     }
     // 进入付款信息
-    wx.redirectTo({
+    wx.navigateTo({
       url:`/pages/shop/paymentInfo/paymentInfo?totalPrice=${this.data.totalPrice}`
     })
   }

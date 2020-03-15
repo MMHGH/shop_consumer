@@ -1,7 +1,6 @@
 <!--pages/shop/cart/cart.wxml-->
 <view class="container">
-    <!-- <van-stepper value="{{ 1 }}" bind:change="onChangeNum" /> -->
-    <view class="cart" wx:if="{{cartListL.length}}">
+    <view class="cart">
         <view class="item" wx:for="{{cartListL}}" wx:key="index">
             <van-swipe-cell id="swipe-cell" right-width="{{ 65 }}">
                 <view class="item-info flex">
@@ -19,7 +18,7 @@
                         <view class="middle-text">
                             <view class="brand">{{item.taste}}</view>
                             <!-- <view class="taste">{{item.name}}</view> -->
-                            <view class="prize">￥ {{item.goodsPrice}}</view>
+                            <view class="prize">￥{{item.goodsPrice}}</view>
                         </view>
                     </view>
                     <view class="item-info__num">
@@ -39,7 +38,7 @@
             </van-swipe-cell>
         </view>
     </view>
-    <view class='no_shop' wx:if="{{!cartListL.length}}">
+    <view class='no_shop' wx:if="{{hasCartList}}">
         <text class='on_shop_txt'>「购物车还没有东西，去门店逛逛」</text>
         <navigator url="/pages/shop/shopHome/shopHome"  hover-class="none">
             <text class='txt_btn'>点击跳转到门店</text>
@@ -48,7 +47,7 @@
     <view class="fotter white motifBg">
         <view class="footer-pay flex" wx:if="{{cartListL.length}}">
             <view class="money">
-                <text>总金额：{{totalPrice}}</text>
+                <text class="prize">总金额：{{totalPrice}}</text>
                 <!-- <text>优惠：</text> -->
             </view>
             <view class="payment" bindtap="payment">付款</view>

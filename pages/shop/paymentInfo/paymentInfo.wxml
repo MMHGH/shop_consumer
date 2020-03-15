@@ -25,7 +25,7 @@
     <view class="fotter white motifBg">
         <view class="footer-pay flex">
             <view class="money">
-                <text>总金额：{{totalPrice}}</text>
+                <text class="prize">总金额：{{totalPrice}}</text>
                 <!-- <text>优惠：</text> -->
             </view>
             <view class="payment" bindtap="payment">付款</view>

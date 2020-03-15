@@ -8,10 +8,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    activeKey: 0,
+    shopName:'',
     brandId:'',
-    activeBrand:0,
-    categoryActive:0,
+    categoryId:'',
+    activeBrandName: '',
+    activeCategoryIndex:0,
     brandList:[],
     categoryList:[],
     goodList:[],
@@ -24,7 +25,12 @@ Page({
       },
     ],
     cartTotal:'',
-    shopName:'',
+
+    pageNum:1,// 当前页数
+    pageSize:200,
+    total:0,
+    hidden: true,//用于控制当 scroll-view 滚动到底部时，显示 “数据加载中...” 的提示
+    loadingData: false,//数据是否正在加载中，避免用户瞬间多次下滑到底部，发生多次数据加载事件
   },
 
   /**
@@ -36,23 +42,74 @@ Page({
     });
   },
   /**
+   * 上滑加载更多
+   */
+  scrollToLower: function(e) {
+    var hidden = this.data.hidden,
+        loadingData = this.data.loadingData,
+        that = this;
+    if (hidden) {
+      this.setData({
+        hidden: false
+      });
+    }
+    if (loadingData) {
+      return;
+    }
+    this.setData({
+      loadingData: true
+    });
+    if (this.data.goodList.length >= this.data.total) {
+      wx.showToast({
+        title: `数据加载完了`,
+        icon: 'none'
+      })
+    } else {
+      // 下一页
+      this.setData({
+        pageNum: this.data.pageNum += 1
+      });
+      wx.showLoading({  
+        title: '数据加载中...',  
+      });  
+      that.getGoodList(true, () => {  
+        that.setData({  
+          hidden: true,  
+          loadingData: false  
+        });  
+        wx.hideLoading();  
+      });  
+      console.info('上拉数据加载完成.');  
+    }
+  },
+  scrollToUpper: function(e) {
+   // 初始化页码
+    // this.setData({
+    //   pageNum: 1
+    // });
+    // this.getGoodList();
+  },
+  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
     this.getBrandList();
     this.getCartTotal();
   },
-  changeBrand(e){
+  changeBrand(e) {
     this.setData({
-      activeBrand: e.currentTarget.dataset.index
+      activeBrandName: e.currentTarget.dataset.id,
+      brandId: e.currentTarget.dataset.id,
+      activeCategoryIndex:0
     });
+    this.getCategoryList()
   },
-  onChange(e) {
-    let index = e.detail;
+  changeCategory(e) {
     this.setData({
-      brandId: this.data.brandList[index].id
-   });
-   this.getCategoryList()
+      activeCategoryIndex: e.currentTarget.dataset.index,
+      categoryId:e.currentTarget.dataset.id
+    });
+    this.getGoodList();
   },
   getBrandList(){
     let params = {
@@ -62,7 +119,8 @@ Page({
       if(res.code == 100){
         this.setData({
            brandList: res.data, 
-           brandId: res.data[0].id 
+           brandId: res.data[0].id,
+           activeBrandName: res.data[0].id
         });
         this.getCategoryList()
       }
@@ -76,9 +134,37 @@ Page({
       if(res.code == 100){
         let categoryList = res.data;
         this.setData({
-          categoryList: categoryList
+          categoryList: categoryList,
+          categoryId: res.data[0].id
         });
-        // this.getGoodList();
+        this.getGoodList();
+      }
+    })
+  },
+  getGoodList(){
+    let params = {
+      brandId:this.data.brandId,
+      categoryId:this.data.categoryId,
+      pageNum:this.data.pageNum,
+      pageSize:this.data.pageSize,
+      taste:'',
+      shopId:wx.getStorageSync('shopId')
+    }
+    server.postRequest(API.listGoods,params).then(res => {
+      if(res.code == 100){
+        const data = res.data;
+        this.setData({  
+          goodList: data.dataList,  
+        });  
+        // var oldArticles = this.data.goodList,  
+        //     newArticles = tail ? oldArticles.concat(data.dataList) : data.dataList;  
+        //     this.setData({  
+        //       goodList: newArticles,  
+        //       total:data.totalCount,
+        //     });  
+        //     if (callback) {  
+        //       callback();  
+        //     }  
       }
     })
   },
@@ -102,11 +188,22 @@ Page({
       goodsId:e.currentTarget.dataset.id,
       number:1
     }
+    // if(!e.currentTarget.dataset.inventory){
+    //   wx.showToast({
+    //     title: `库存不足,请选择其他商品!`,
+    //     icon: 'none'
+    //   })
+    //   return;
+    // }
     server.postRequest(API.addShoppingCart,params).then(res => {
       if(res.code == 100){
         this.setData({
           cartTotal: res.data
         });
+        wx.showToast({
+          title: `加入购物车成功`,
+          icon: 'none'
+        })
       }
     })
   },

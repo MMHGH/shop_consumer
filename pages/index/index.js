@@ -14,20 +14,7 @@ Page({
     show:false,
     isLogin:false,
     type:'center',
-    list:[
-      // {
-      //   banner:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg',
-      //   text:'深圳市南山区桂庙新村61-1-1'
-      // },
-      // {
-      //   banner:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg',
-      //   text:'深圳市南山区桂庙新村61-1-1'
-      // },
-      // {
-      //   banner:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg',
-      //   text:'深圳市南山区桂庙新村61-1-1'
-      // }
-    ],
+    list:[],
     userInfo:{}
   },
   onLoad: function () {
@@ -51,8 +38,6 @@ Page({
         }
       }
     })
-  },
-  onShow(){
   },
   getUserInfo: function(e) {
     var that = this;

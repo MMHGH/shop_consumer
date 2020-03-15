@@ -4,12 +4,12 @@ const API = require('../../server/api.js')
 const utils = require('../../utils/util.js')
 
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     show:false,
+    hasOrderList:false,
     active:'',
     orderNo:'',
     payAmount:'',
@@ -24,7 +24,11 @@ Page({
     serviceTips:'无法取货\n联系客服',
     noTips:'空空如也\n赶紧囤点口粮吧',
     orderList: [],
-    avatarUrl:''
+    avatarUrl:'',
+
+    pageNum:1,// 当前页数
+    pageSize:10,
+    total:0,
   },
 
   /**
@@ -32,10 +36,10 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      avatarUrl:wx.getStorageSync('avatarUrl'),
       level: wx.getStorageSync('level'),
-      point: wx.getStorageSync('point')
-    })
+      point: wx.getStorageSync('point'),
+      avatarUrl: wx.getStorageSync('avatarUrl')
+    });
   },
   /**
    * 生命周期函数--监听页面显示
@@ -47,19 +51,41 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    // 初始化页码
+    this.setData({
+      pageNum: 1
+    });
     this.getListMyOrders();
+  },
+   /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    if (this.data.orderList.length > this.data.total) {
+      wx.showToast({
+        title: `数据加载完了`,
+        icon: 'none'
+      })
+    } else {
+      // 下一页
+      this.setData({
+        pageNum: this.data.pageNum += 1
+      });
+      this.getListMyOrders();
+    }
   },
   getListMyOrders(){
     let params = {
-      pageNum:1,
-      pageSize:100,
+      pageNum:this.data.pageNum,
+      pageSize:this.data.pageSize,
       isToken:''
     }
     server.postRequest(API.listMyOrders, params).then(res => {
       if (res.code == 100) {
+        // 关闭下拉刷新动画
+        wx.stopPullDownRefresh();
         let orderList = res.data.dataList;
-        // let orderList = this.data.orderList;
-        orderList.forEach((item) => {
+        orderList.length && orderList.forEach((item) => {
           item.payTime = utils.formatTime(item.payTime)
           item.goodsList.forEach((item1,index) => {
             if(index === 0){
@@ -69,10 +95,18 @@ Page({
             } 
           })
         })
+        // 数据追加  
+        let oldList = this.data.orderList;
+        if (this.data.pageNum > 1) {
+          oldList.push(...orderList)
+        } else {
+          oldList = orderList
+        }
         this.setData({
-          orderList: orderList
+          orderList: oldList,
+          total:res.data.totalCount,
+          hasOrderList:!oldList.length?true:false
         })
-        console.log(55,this.data.orderList)
       }
     })
   },

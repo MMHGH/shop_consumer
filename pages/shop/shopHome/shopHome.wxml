@@ -3,29 +3,46 @@
         <view class='header'>{{shopName}}</view>
         <view class='main'>
             <view class='main-left'>
-                <scroll-view  scroll-y="true" style="height: 100%" class='y' >
-                    <van-sidebar  active-key="{{ activeKey }}" bind:change="onChange">
-                        <van-sidebar-item wx:for="{{brandList}}" wx:key="{{index}}" title="{{item.name}}" />
-                    </van-sidebar>
-                    <!-- <view class="brand">
-                        <view 
-                          class="brand-title {{activeBrand == brandIndex?'activeBanner':''}}" 
+                <scroll-view  
+                    scroll-y="true" 
+                    style="height: 100%" class='y'>
+                        <van-collapse  
+                          value="{{ activeBrandName }}" 
+                          bind:change="changeBrand" 
                           wx:for="{{brandList}}" 
-                          wx:for-item="brandItem" 
-                          wx:for-index="brandIndex"
-                          data-index="{{brandIndex}}"
-                          bindtap="changeBrand" 
-                          wx:key="brandItem">
-                            <text class="text">{{brandItem.name}}</text>
-                              <view class="category" wx:for="{{ categoryList }}" wx:key="{{index}}" wx:for-item="categoryItem" wx:for-index="categoryIndex" wx:key="categoryItem">
-                                    {{categoryItem.catName}}
-                              </view>
-                        </view> -->
-                    <!-- </view> -->
+                          data-index="{{brandIndex}}" 
+                          data-id="{{brand.id}}" 
+                          wx:for-item="brand" 
+                          border="{{false}}"
+                          wx:for-index="brandIndex" 
+                          wx:key="brand"
+                          accordion>
+                            <van-collapse-item 
+                              title="{{brand.name}}" 
+                              is-link="{{false}}"
+                              border="{{false}}"
+                              class="brand-cell {{activeBrandName == brand.id?'activeBrand':'noActive'}} {{!categoryList.length?'noCategory':''}}"
+                              name="{{brand.id}}">
+                                <block 
+                                    wx:for="{{categoryList}}" 
+                                    wx:for-item="category" 
+                                    wx:for-index="categoryIndex" 
+                                    wx:key="category">
+                                    <view class='category-list'>
+                                        <view class="item {{activeCategoryIndex  == categoryIndex?'activeCategory':''}}" data-id="{{category.id}}" data-index="{{categoryIndex}}" bindtap="changeCategory">
+                                            {{category.catName}}
+                                        </view>
+                                    </view>
+                                </block>
+                            </van-collapse-item>
+                        </van-collapse>
                 </scroll-view> 
             </view>
             <view class='main-right'>
-                <scroll-view  scroll-y="true" style="height: 100%" class='main-scroll' >
+                <scroll-view  
+                   class='main-scroll' 
+                   scroll-y='{{true}}'
+                   style="height:100%;-webkit-overflow-scrolling:touch">
                     <view class="content">
                         <view class="swiper">
                             <swiper class='u-wrp-bnr' indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true'>
@@ -38,13 +55,14 @@
                         </view>
                         <view class="grid-info">
                             <van-grid column-num="3" border="{{ false }}">
-                                <van-grid-item data-id="{{item.id}}" data-index="{{index}}" bindtap="toGoodsList" use-slot wx:for="{{ categoryList }}" wx:key="{{index}}">
+                                <van-grid-item data-id="{{item.id}}" data-inventory="{{item.inventory}}" bindtap="addCart" use-slot wx:for="{{ goodList }}" wx:key="{{index}}">
                                     <image
                                     class="img"
                                     mode='aspectFill'
                                     src="{{item.picUrl}}"
                                     />
-                                    <text class="text">{{item.catName}}</text>
+                                    <text class="text">{{item.goodsName}}</text>
+                                    <text class="prize">￥{{item.goodsPrice}}</text>
                                 </van-grid-item>
                             </van-grid>
                         </view>

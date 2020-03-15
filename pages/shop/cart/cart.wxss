@@ -22,7 +22,7 @@
 }
 .cart .item .item-info__middle .middle-text .brand {
   margin-top: 20rpx;
-  margin-bottom: 20rpx;
+  margin-bottom: 10rpx;
 }
 .cart .item .item-info__middle .middle-text .taste {
   margin-bottom: 20rpx;
@@ -45,20 +45,26 @@
   position: absolute;
   top: 30%;
   left: 50%;
+  width: 100%;
+  font-size: 33rpx;
   transform: translate(-50%, 50%);
 }
 .no_shop .txt_btn {
   color: #4a42d9;
 }
 .footer-pay {
-  padding: 0 15rpx 20rpx;
+  padding: 10rpx 15rpx 20rpx;
   text-align: left;
 }
 .footer-pay .money {
   width: 80%;
+  font-size: 33rpx;
+}
+.footer-pay .money .prize {
+  margin-left: 40rpx;
 }
 .footer-pay .payment {
-  font-size: 50rpx;
+  font-size: 55rpx;
   font-weight: 600;
 }
 .van-swipe-cell__right {

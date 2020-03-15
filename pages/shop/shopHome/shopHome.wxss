@@ -17,28 +17,36 @@
   width: 200rpx;
   height: 100%;
 }
-.shop .main-left .van-sidebar {
+.shop .main-left .brand-cell {
   text-align: center;
-  margin-bottom: 200rpx;
 }
-.shop .main-left .van-sidebar-item--selected {
-  background: #333333;
+.shop .main-left .brand-cell .van-cell {
+  padding: 40rpx 16rpx;
+}
+.shop .main-left .activeBrand .van-cell {
   color: #fff;
-  border: none;
-}
-.shop .main-left .brand-title {
-  line-height: 50rpx;
-  background: #fff;
-}
-.shop .main-left .brand .activeBanner {
   background: #333333;
 }
-.shop .main-left .brand .category {
-  border: 1px solid red;
-  background: #fff;
+.shop .main-left .noActive .van-cell {
+  font-weight: 600;
+  background: #fafafa;
+}
+.shop .main-left .noCategory .van-collapse-item__content {
+  padding: 0;
+  font-weight: 600;
+}
+.shop .main-left .category-list {
+  color: #333333;
+}
+.shop .main-left .category-list .item {
+  padding: 20rpx 0;
+}
+.shop .main-left .category-list .activeCategory {
+  color: #39ae99;
+  font-weight: 600;
 }
 .shop .main-right {
-  margin: 0 0 50rpx 170rpx;
+  margin: 0 0 50rpx 200rpx;
   text-align: right;
   overflow: hidden;
   width: 100%;
@@ -54,6 +62,9 @@
   width: 100%;
   height: inherit;
 }
+.shop .main-right .content .grid-info {
+  font-size: 30rpx;
+}
 .shop .main-right .content .grid-info .img {
   width: 100rpx;
   height: 100rpx;
@@ -61,8 +72,10 @@
   margin-bottom: 10rpx;
 }
 .shop .main-right .content .grid-info .text {
-  font-size: 30rpx;
   text-align: center;
+}
+.shop .main-right .content .grid-info .prize {
+  color: #f64554;
 }
 .shop .add-cart {
   position: fixed;

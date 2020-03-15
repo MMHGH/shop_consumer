@@ -1,7 +1,7 @@
 <!--pages/myCenter/myCenter.wxml-->
 <wxs src="../../utils/filter.wxs" module="fmt" />
 
-<view class='wraper my-center'>
+<view class='my-center'>
     <view class='header'>
         <view class="header-logo flex">
             <view class="flex_1" bindtap="shopHome">
@@ -25,16 +25,21 @@
         </view>
     </view>
     <view class='main'>
-      <scroll-view class='main-scroll' scroll-y style="height: 100%">
+      <scroll-view 
+        class='main-scroll' 
+        scroll-y style="height: 100%">
         <view class='main-list'>
-          <view class='card' wx:for="{{orderList}}" wx:if="{{orders.goodsList.length}}" data-index="{{ordersIndex}}" bindtap="bindReveal" wx:for="{{orderList}}" wx:for-item="orders" wx:for-index="ordersIndex" wx:key="orders">
+          <view class='card' wx:for="{{orderList}}" wx:if="{{orders.goodsList.length}}" data-index="{{ordersIndex}}" bindtap="bindReveal" wx:for-item="orders" wx:for-index="ordersIndex" wx:key="orders">
                 <view class="card-info">
                     <block wx:for="{{orders.goodsList}}" wx:for-item="list" wx:for-index="listIndex" wx:key="list">
                         <view class="item flex" wx:if="{{!list.isShow}}">
                             <image class="img" src="{{list.picUrl}}"></image>
                             <view class="item-text flex_1">
                                 <view class="brand-name">{{list.brandName}}</view>
-                                <view class="taste">{{list.taste}}</view>
+                                <view>
+                                    <text>{{list.categoryName}}</text>
+                                    <text class="taste">{{list.taste}}</text>
+                                </view>
                             </view>
                             <view class="status" wx:if="{{listIndex == 0}}">
                                 <text class="statusText" wx:if="{{orders.tradeStatus == 0}}">{{fmt.fliterOrderStatus(orders.tradeStatus) + orders.verifyCode}}</text>
@@ -68,7 +73,7 @@
             </view>
         </view>
     </van-overlay>
-    <text class='no-tips' wx:if="{{!orderList.length}}">{{noTips}}</text>
+    <text class='no-tips' wx:if="{{hasOrderList}}">{{noTips}}</text>
     <view class="relation motifBg" bindtap="callUp">
         <van-icon name="phone-o" size="60rpx" color="#fff"/>
         <text class="text">{{serviceTips}}</text>

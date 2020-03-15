@@ -1,11 +1,12 @@
-page {
-  width: 100%;
-  height: 100%;
+.my-center {
+  overflow: hidden;
 }
 .my-center .header {
+  position: fixed;
   line-height: 100rpx;
-  flex: 0 0 100rpx;
-  /* 不放大不缩小固定100rpx */
+  background: #fff;
+  width: 100%;
+  z-index: 99;
 }
 .my-center .header-logo {
   padding: 0 20rpx;
@@ -32,15 +33,7 @@ page {
   margin-right: 40rpx;
 }
 .my-center .main {
-  flex: 1;
-  position: relative;
-}
-.my-center .main-scroll {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+  margin-top: 250rpx;
 }
 .my-center .main-scroll .main-list {
   padding: 30rpx;
@@ -54,6 +47,9 @@ page {
   font-size: 30rpx;
   align-items: center;
 }
+.my-center .main-scroll .main-list .card-info .item:first-child {
+  padding-top: 33rpx;
+}
 .my-center .main-scroll .main-list .card-info .item .img {
   width: 100rpx;
   height: 100rpx;
@@ -61,6 +57,9 @@ page {
 }
 .my-center .main-scroll .main-list .card-info .item-text {
   margin-left: 15rpx;
+}
+.my-center .main-scroll .main-list .card-info .item-text .taste {
+  margin-left: 10rpx;
 }
 .my-center .main-scroll .main-list .card-info .item .status .statusText {
   color: #169bd5;

@@ -41,13 +41,13 @@
     <view class="userInfo">
       <van-icon class="icon" name="chat" color="#333333" />
       <text class="apply">
-        申请获取以下权限
+        为提供优质的服务,塔兔需获取以下信息
       </text>
       <text class="acquire">
         获取你的公开信息(昵称,头像等)
       </text>
       <view class="">
-        <button class="btn" open-type='getUserInfo' lang='zh_CN' bindgetuserinfo="getUserInfo">授权登录</button>
+        <button class="btn" open-type='getUserInfo' lang='zh_CN' bindgetuserinfo="getUserInfo">同意</button>
       </view>
     </view>
   </van-popup>
@@ -59,10 +59,10 @@
     custom-style="height: 35%"
     bind:close="onClose">
     <view class="auth flex">
-      <view class="login-tips">请先授权</view>
+      <view class="login-tips">授权登录</view>
       <view class="login-auth">申请获取你的手机号</view>
       <view class="login-btn">
-        <button class='btn pop_btn' plain="true" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">绑定手机号</button>
+        <button class='btn pop_btn' plain="true" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">登录</button>
       </view>
     </view>
   </van-popup>
