@@ -15,6 +15,7 @@ Page({
     isLogin:false,
     type:'center',
     list:[],
+    userTips:'为提供优质的服务,塔兔需获取\n以下信息',
     userInfo:{}
   },
   onLoad: function () {
@@ -55,6 +56,10 @@ Page({
       }
     } else {
       console.log("获取信息失败")
+      wx.showToast({
+        title: "未获得信息",
+        icon: 'none',
+      })
     }
   },
   getListShop(){

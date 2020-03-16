@@ -22,7 +22,7 @@
     </view>
     <view class="home-content">
         <view class="item" wx:for="{{list}}" wx:key="{{index}}" data-type="home" data-id="{{item.id}}" data-shopname="{{item.shopName}}" bindtap='checkAuth'>
-            <image src="{{item.banner}}" class="bg_img"></image>
+            <image src="{{item.banner}}" mode="aspectFill" class="bg_img"></image>
             <view class="address">{{item.province+item.city+item.area+item.address}}</view>
         </view>
     </view>
@@ -40,9 +40,7 @@
     bind:close="closeUser">
     <view class="userInfo">
       <van-icon class="icon" name="chat" color="#333333" />
-      <text class="apply">
-        为提供优质的服务,塔兔需获取以下信息
-      </text>
+      <text class="apply">{{userTips}}</text>
       <text class="acquire">
         获取你的公开信息(昵称,头像等)
       </text>

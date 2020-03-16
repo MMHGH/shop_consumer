@@ -29,6 +29,7 @@ Page({
     pageNum:1,// 当前页数
     pageSize:10,
     total:0,
+    time:''
   },
 
   /**
@@ -41,11 +42,25 @@ Page({
       avatarUrl: wx.getStorageSync('avatarUrl')
     });
   },
+  
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
     this.getListMyOrders();
+    this.data.time = setTimeout(()=>{
+      this.getListMyOrders()
+    }, 2000)
+  },
+  onHide: function(options) {
+    var that =this;
+    //清除计时器  即清除setInter
+    clearTimeout(that.data.time)
+  },
+  onUnload: function(options) {
+    var that =this;
+    //清除计时器  即清除setInter
+    clearTimeout(that.data.time)
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -87,13 +102,7 @@ Page({
         let orderList = res.data.dataList;
         orderList.length && orderList.forEach((item) => {
           item.payTime = utils.formatTime(item.payTime)
-          item.goodsList.forEach((item1,index) => {
-            if(index === 0){
-              item1.isShow = false;    
-            }else{
-              item1.isShow = true;    
-            } 
-          })
+          item.isShow = false;    
         })
         // 数据追加  
         let oldList = this.data.orderList;
@@ -115,17 +124,9 @@ Page({
     let orderList = this.data.orderList;
     orderList.forEach((item,indx) => {
       if(indx === index){
-        item.goodsList.forEach((item1,indx1) => {
-          if(indx1 != 0){
-            item1.isShow = !item1.isShow;    
-          } 
-        })
+        item.isShow = !item.isShow;
       }else{
-        item.goodsList.forEach((item1,indx1) => {
-          if(indx1 != 0){
-            item1.isShow = true;    
-          } 
-        })
+        item.isShow = false;
       }
     })
     this.setData({
@@ -167,6 +168,9 @@ Page({
           show: false,
         })
         this.getListMyOrders();
+        this.data.time = setTimeout(()=>{
+          this.getListMyOrders()
+        }, 3000)
       }
     })
   },

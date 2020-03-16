@@ -100,7 +100,7 @@ Page({
                       wx.redirectTo({
                           url: "/pages/myCenter/myCenter"
                       })
-                  }, 500)
+                  }, 1000)
               }
           },
           fail:function(res){

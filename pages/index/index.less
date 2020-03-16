@@ -2,8 +2,11 @@ page{
     background: #f8f8f8;
 }
 .home{
+    overflow: hidden;
     &-header{
         background: #fff;
+        position: fixed;
+        width: 100%;
         .header{
             padding:20rpx;
         }
@@ -24,14 +27,17 @@ page{
     }
     &-content{
         padding:0 20rpx 20rpx;
-        margin-bottom: 110rpx;
+        margin-bottom: 60rpx;
+        margin-top:200rpx;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
         .item{
             margin:30rpx 0;
             background: #fff;
             border-radius: 20rpx;
            .bg_img{
                width:100%;
-               height:250rpx;
+            //    height:250rpx;
                display: block;
                padding:20rpx 0;
            }
