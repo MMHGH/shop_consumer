@@ -169,7 +169,7 @@ Page({
     })
   },
   getCartTotal(){
-    server.getRequest(API.getShoppingCartCount,{}).then(res => {
+      server.getRequest(API.getShoppingCartCount,{shopId:wx.getStorageSync('shopId')}).then(res => {
       if(res.code == 100){
         this.setData({
           cartTotal: res.data
@@ -186,7 +186,8 @@ Page({
   addCart(e){
     let params = {
       goodsId:e.currentTarget.dataset.id,
-      number:1
+      number:1,
+      shopId:wx.getStorageSync('shopId')
     }
     // if(!e.currentTarget.dataset.inventory){
     //   wx.showToast({

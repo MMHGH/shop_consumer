@@ -53,7 +53,7 @@ Page({
   },
   getData(){
     let self = this;
-    server.getRequest(API.listMemberCart,{}).then(res => {
+    server.getRequest(API.listMemberCart,{shopId:wx.getStorageSync('shopId')}).then(res => {
       if(res.code == 100){
          // 返回的数据
          const data = res.data;
@@ -124,6 +124,7 @@ Page({
     let params = {
       id:list[index].id,
       goodsId:list[index].goodsId,
+      shopId:wx.getStorageSync('shopId')
     }
     if(type == 'checked'){
       params.number = list[index].number;
