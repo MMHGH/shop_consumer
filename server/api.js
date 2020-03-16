@@ -2,6 +2,7 @@ const api = {
     // 使用豆瓣电影在线接口
     getSessionKey: '/api/login/jscode2session',//电影列表
     login: '/api/login/login',//登陆
+    getMemberInfo: '/api/member/getMemberInfo',//登陆
     getWXPhone: '/api/login/getWXPhone',//根据微信加密数据获取
     listShop: '/api/member/listShop',//门店列表
     listMyOrders: '/api/order/listMyOrders',//订单列表

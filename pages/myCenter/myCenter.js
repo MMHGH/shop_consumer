@@ -37,8 +37,6 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      level: wx.getStorageSync('level'),
-      point: wx.getStorageSync('point'),
       avatarUrl: wx.getStorageSync('avatarUrl')
     });
   },
@@ -47,6 +45,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getMemberInfo();
     this.getListMyOrders();
     this.data.time = setTimeout(()=>{
       this.getListMyOrders()
@@ -88,6 +87,17 @@ Page({
       });
       this.getListMyOrders();
     }
+  },
+  getMemberInfo(){
+    let params = {}
+    server.getRequest(API.getMemberInfo,params).then(res => {
+      if(res.code == 100){
+        this.setData({ 
+          level: res.data.level, 
+          point: res.data.point 
+        });
+      }
+    })
   },
   getListMyOrders(){
     let params = {
