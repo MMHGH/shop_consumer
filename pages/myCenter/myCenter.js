@@ -49,7 +49,7 @@ Page({
     this.getListMyOrders();
     this.data.time = setTimeout(()=>{
       this.getListMyOrders()
-    }, 2000)
+    }, 3000)
   },
   onHide: function(options) {
     var that =this;
@@ -75,7 +75,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (this.data.orderList.length > this.data.total) {
+    if (this.data.orderList.length >= this.data.total) {
       wx.showToast({
         title: `数据加载完了`,
         icon: 'none'

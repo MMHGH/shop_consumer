@@ -6,7 +6,7 @@
   line-height: 100rpx;
   background: #fff;
   width: 100%;
-  z-index: 99;
+  z-index: 1;
 }
 .my-center .header-logo {
   padding: 0 20rpx;

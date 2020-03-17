@@ -16,7 +16,11 @@ App({
     })
   },
   login(res){
-    server.postRequest(API.getSessionKey,{code:res.code}).then(res => {
+    let params = {
+      code:res.code,
+      type:2 //店员：1 消费者：2
+    }
+    server.postRequest(API.getSessionKey,params).then(res => {
         if (res.code == 100) {
           wx.setStorageSync('sessionKey', res.data.session_key)
           wx.setStorageSync('openid', res.data.openid)

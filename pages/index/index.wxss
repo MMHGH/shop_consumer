@@ -41,7 +41,9 @@ page {
 .home-content .item .bg_img {
   width: 100%;
   display: block;
-  padding: 20rpx 0;
+  padding: 0 0 20rpx;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
 }
 .home-content .item .address {
   padding: 0 15rpx 15rpx;
