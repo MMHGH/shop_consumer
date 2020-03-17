@@ -3,6 +3,7 @@ const server = require('../../server/server.js')
 const API = require('../../server/api.js')
 const utils = require('../../utils/util.js')
 const tips = require("../../utils/tips");
+import Toast from '@vant/weapp/toast/toast';
 
 Page({
   /**
@@ -199,7 +200,6 @@ Page({
           pageNum: 1
         })
         // this.getListMyOrders();
-        // 退货成功
         tips.showSuccess("退货成功!"), setTimeout(()=>{
           this.getListMyOrders()
         }, 3000)

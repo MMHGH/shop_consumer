@@ -12,7 +12,7 @@ const profiles = {
   },
   'prod': {
     'online': true,
-    'baseURL': 'https://api.xxx.xxx'//生产环境
+    'baseURL': 'https://store.ta2tattoo.cn'//生产环境
   }
 }
 const ENV = profiles[current]

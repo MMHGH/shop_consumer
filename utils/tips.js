@@ -1,4 +1,6 @@
 "use strict";
+import Toast from '@vant/weapp/toast/toast';
+
 var showBusy = function (o) {
     return wx.showToast({title: o, icon: "loading", duration: 2e3})
 }, showSuccess = function (o) {
@@ -17,6 +19,12 @@ var showBusy = function (o) {
             o.confirm && "function" == typeof s && s()
         }
     })
+},showVantLoading = function (o) {
+    return Toast.loading({
+            mask: true,
+            message: o,
+            duration: 3000,
+    });
 };
 module.exports = {
     showBusy: showBusy,
@@ -25,5 +33,6 @@ module.exports = {
     showLoading: showLoading,
     hideLoading: hideLoading,
     showWarning: showWarning,
-    showConfirm: showConfirm
+    showConfirm: showConfirm,
+    showVantLoading: showVantLoading
 };

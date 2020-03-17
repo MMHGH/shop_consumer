@@ -115,4 +115,5 @@
         <van-icon name="phone-o" size="60rpx" color="#fff"/>
         <text class="text">{{serviceTips}}</text>
     </view>
+    <van-toast id="van-toast" />
 </view>

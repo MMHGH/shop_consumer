@@ -19,7 +19,6 @@ Page({
     userInfo:{}
   },
   onLoad: function () {
-    // this.login();
     this.getListShop();
     //是否授权过用户信息
     let that = this;
