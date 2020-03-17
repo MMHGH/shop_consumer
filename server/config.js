@@ -1,5 +1,5 @@
 
-const current = 'test' //当前环境
+const current = 'prod' //当前环境
 
 const profiles = {
   'dev': {

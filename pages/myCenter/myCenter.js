@@ -3,7 +3,7 @@ const server = require('../../server/server.js')
 const API = require('../../server/api.js')
 const utils = require('../../utils/util.js')
 const tips = require("../../utils/tips");
-import Toast from '@vant/weapp/toast/toast';
+import Dialog from '@vant/weapp/dialog/dialog';
 
 Page({
   /**
@@ -33,6 +33,10 @@ Page({
     total:0,
     time:'',
     isLoading:false,//是否加载
+
+    items: [],
+    startX: 0, //开始坐标
+    startY: 0,
   },
 
   /**
@@ -199,10 +203,15 @@ Page({
           show: false,
           pageNum: 1
         })
-        // this.getListMyOrders();
-        tips.showSuccess("退货成功!"), setTimeout(()=>{
+        Dialog.alert({
+          title: '提示',
+          message: '退款已成功，请稍后刷新订单状态'
+        }).then(() => {
           this.getListMyOrders()
-        }, 3000)
+        });
+        // tips.showSuccess("退货成功!"), setTimeout(()=>{
+        //   this.getListMyOrders()
+        // }, 3000)
       }
     })
   },

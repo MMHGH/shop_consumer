@@ -1,10 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-
-    "pages/shop/shopHome/shopHome",
-
     "pages/myCenter/myCenter",
+    "pages/shop/shopHome/shopHome",
     "pages/shop/cart/cart",
     "pages/shop/paymentInfo/paymentInfo",
     "pages/shop/goodsList/goodsList"

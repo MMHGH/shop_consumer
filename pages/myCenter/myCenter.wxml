@@ -38,8 +38,8 @@
             wx:for-index="ordersIndex" 
             wx:key="orders">
                 <view class="card-info">
-                    <van-swipe-cell id="swipe-cell" right-width="{{ 65 }}">
-                        <view class="item flex">
+                    <van-swipe-cell id="swipe-cell" right-width="{{ 65 }}" wx:if="{{orders.tradeStatus == 0}}">
+                        <view class="item flex" catchtap="bindReveal" data-index="{{ordersIndex}}">
                             <image class="img" src="{{orders.goodsList[0].picUrl}}"></image>
                             <view class="item-text flex_1">
                                 <view class="brand-name">{{orders.goodsList[0].brandName}}</view>
@@ -54,9 +54,9 @@
                                 <view class="num">共{{orders.goodsNumber}}件</view>
                             </view>
                         </view>
-                        <view slot="right" data-id="{{item.id}}" bindtap="del">退货</view>
+                        <view slot="right" data-orderno="{{orders.orderNo}}" data-money="{{orders.payAmount}}" catchtap="salesReturn">退货</view>
                     </van-swipe-cell>
-                    <!-- <view class="item flex">
+                    <view class="item flex" wx:if="{{orders.tradeStatus != 0}}">
                         <image class="img" src="{{orders.goodsList[0].picUrl}}"></image>
                         <view class="item-text flex_1">
                             <view class="brand-name">{{orders.goodsList[0].brandName}}</view>
@@ -70,7 +70,7 @@
                             <text class="{{orders.tradeStatus == 1?'statusText':''}}" wx:else>{{fmt.fliterOrderStatus(orders.tradeStatus)}}</text>
                             <view class="num">共{{orders.goodsNumber}}件</view>
                         </view>
-                    </view> -->
+                    </view>
                     <view wx:if="{{orders.isShow}}">
                         <block 
                             wx:for="{{orders.goodsList}}" 
@@ -104,9 +104,9 @@
                         </block>
                     </view>      
                 </view>
-                <view class="back-goods" wx:if="{{orders.tradeStatus == 0}}">
+                <!-- <view class="back-goods" wx:if="{{orders.tradeStatus == 0}}">
                     <van-button size="mini" data-money="{{orders.payAmount}}" data-orderno="{{orders.orderNo}}" catchtap="salesReturn">退货</van-button>
-                </view>
+                </view> -->
                 <view class="location-info motifBg flex" data-local="{{ordersIndex}}" catchtap="openLocation">
                     <text class="location-info__name flex_1">{{orders.shop.province+orders.shop.city+orders.shop.area+orders.shop.address}}</text>
                     <van-icon class="location-info__icon" name="location-o" color="#e9b708"/>
@@ -133,5 +133,5 @@
         <van-icon name="phone-o" size="60rpx" color="#fff"/>
         <text class="text">{{serviceTips}}</text>
     </view>
-    <van-toast id="van-toast" />
+    <van-dialog id="van-dialog" />
 </view>
