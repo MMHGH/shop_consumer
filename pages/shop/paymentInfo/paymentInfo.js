@@ -84,7 +84,6 @@ Page({
       message: '支付中...'
     });
     server.postRequest(API.orderWxPay,params).then(res => {
-      console.log('数据返回',res.data,res.data['timeStamp']);
       Toast.clear();
       if(res.code == 100){
         wx.requestPayment({

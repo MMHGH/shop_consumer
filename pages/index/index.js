@@ -50,7 +50,7 @@ Page({
       wx.setStorageSync('avatarUrl',e.detail.userInfo.avatarUrl)
       let isBindPhone =  Number(wx.getStorageSync('status'));
       if(isBindPhone){
-        wx.redirectTo({
+        wx.navigateTo({
           url:this.data.type == 'center'?"/pages/myCenter/myCenter":"/pages/shop/shopHome/shopHome"
         })
       }
@@ -85,7 +85,7 @@ Page({
     }else if(!isBindPhone){
       this.setData({ show: true });
     }else{
-      wx.redirectTo({
+      wx.navigateTo({
         url:this.data.type == 'center'?"/pages/myCenter/myCenter":"/pages/shop/shopHome/shopHome"
       })
     }
@@ -120,7 +120,7 @@ Page({
                 wx.setStorageSync('phone', phone)
                 wx.setStorageSync('status', res1.data.status)//是否绑定手机号
                 wx.setStorageSync('userToken', res1.data.userToken)
-                wx.redirectTo({
+                wx.navigateTo({
                   url:this.data.type == 'center'?"/pages/myCenter/myCenter":"/pages/shop/shopHome/shopHome"
                 })
                 that.setData({

@@ -158,15 +158,6 @@ Page({
         this.setData({  
           goodList: data.dataList,  
         });  
-        // var oldArticles = this.data.goodList,  
-        //     newArticles = tail ? oldArticles.concat(data.dataList) : data.dataList;  
-        //     this.setData({  
-        //       goodList: newArticles,  
-        //       total:data.totalCount,
-        //     });  
-        //     if (callback) {  
-        //       callback();  
-        //     }  
       }
     })
   },

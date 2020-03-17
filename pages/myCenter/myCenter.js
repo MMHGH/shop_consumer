@@ -196,6 +196,7 @@ Page({
       if(res.code == 100){
         this.setData({
           show: false,
+          pageNum: 1
         })
         // this.getListMyOrders();
         // 退货成功
