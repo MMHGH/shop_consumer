@@ -5,7 +5,8 @@
     "van-button": "@vant/weapp/button",
     "van-overlay": "@vant/weapp/overlay/index",
     "van-image": "@vant/weapp/image/index",
-    "van-toast": "@vant/weapp/toast/index"
+    "van-toast": "@vant/weapp/toast/index",
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index"
   },
   "navigationBarTitleText": "个人中心",
   "enablePullDownRefresh": true

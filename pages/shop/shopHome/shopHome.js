@@ -121,8 +121,8 @@ Page({
       if(res.code == 100){
         this.setData({
            brandList: res.data, 
-           brandId: res.data[0].id,
-           activeBrandName: res.data[0].id
+           brandId: res.data.length?res.data[0].id :'',
+           activeBrandName: res.data.length?res.data[0].id:''
         });
         this.getCategoryList()
       }
@@ -137,7 +137,7 @@ Page({
         let categoryList = res.data;
         this.setData({
           categoryList: categoryList,
-          categoryId: res.data[0].id
+          categoryId: res.data.length?res.data[0].id:''
         });
         this.getGoodList();
       }
@@ -165,7 +165,7 @@ Page({
       server.getRequest(API.getShoppingCartCount,{shopId:wx.getStorageSync('shopId')}).then(res => {
       if(res.code == 100){
         this.setData({
-          cartTotal: res.data
+          cartTotal: res.data || ''
         });
       }
     })

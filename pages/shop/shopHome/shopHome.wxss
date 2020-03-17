@@ -10,12 +10,12 @@
 .shop .main {
   position: relative;
   display: flex;
-  top: 100rpx;
 }
 .shop .main-left {
   position: fixed;
   width: 200rpx;
   height: 100%;
+  top: 100rpx;
 }
 .shop .main-left .brand-cell {
   text-align: center;
@@ -46,7 +46,7 @@
   font-weight: 600;
 }
 .shop .main-right {
-  margin: 0 0 50rpx 200rpx;
+  margin: 100rpx 0 50rpx 200rpx;
   text-align: right;
   overflow: hidden;
   width: 100%;
