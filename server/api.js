@@ -16,7 +16,7 @@ const api = {
     updateShoppingCart: '/api/goods/updateShoppingCart',//更新购物车
     refund: '/api/order/refund',//退货
     getRecentContacts: '/api/member/getRecentContacts',//退货
-    orderWxPay: '/api/order/orderWxPay ',//微信支付
+    orderWxPay: '/api/order/orderWxPay',//微信支付
   }
 
   module.exports = api

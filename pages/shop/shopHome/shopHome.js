@@ -9,6 +9,7 @@ Page({
    */
   data: {
     shopName:'',
+    bannerUrl:'',
     brandId:'',
     categoryId:'',
     activeBrandName: '',
@@ -17,12 +18,12 @@ Page({
     categoryList:[],
     goodList:[],
     swiperList:[
-      {
-        url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg'
-      },
-      {
-        url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg'
-      },
+      // {
+      //   url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg'
+      // },
+      // {
+      //   url:'https://imgtest-1257418739.cos.ap-guangzhou.myqcloud.com/userFile/392/2019-04-18/87374a5f-1a86-4721-8570-322d0e7e034f.jpg'
+      // },
     ],
     cartTotal:'',
 
@@ -38,7 +39,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      shopName: wx.getStorageSync('shopName')
+      shopName: wx.getStorageSync('shopName'),
+      bannerUrl: wx.getStorageSync('bannerUrl')
     });
   },
   /**

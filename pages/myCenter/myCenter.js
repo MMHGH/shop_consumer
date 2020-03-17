@@ -2,6 +2,7 @@
 const server = require('../../server/server.js')
 const API = require('../../server/api.js')
 const utils = require('../../utils/util.js')
+const tips = require("../../utils/tips");
 
 Page({
   /**
@@ -29,7 +30,8 @@ Page({
     pageNum:1,// 当前页数
     pageSize:10,
     total:0,
-    time:''
+    time:'',
+    isLoading:false,//是否加载
   },
 
   /**
@@ -75,14 +77,21 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    if(this.data.isLoading){
+      return
+    }
     if (this.data.orderList.length >= this.data.total) {
       wx.showToast({
-        title: `数据加载完了`,
+        title: `订单加载完了`,
         icon: 'none'
       })
     } else {
       // 下一页
+      wx.showLoading({
+        title: '加载中...',
+      })
       this.setData({
+        isLoading:true,
         pageNum: this.data.pageNum += 1
       });
       this.getListMyOrders();
@@ -127,6 +136,17 @@ Page({
           hasOrderList:!oldList.length?true:false
         })
       }
+      // 回改状态
+      this.setData({
+        isLoading:false
+      })
+      wx.hideLoading();
+    }).catch(err=>{
+      // 回改状态
+      this.setData({
+        isLoading:false
+      })
+      wx.hideLoading();
     })
   },
   bindReveal(e){
@@ -177,8 +197,9 @@ Page({
         this.setData({
           show: false,
         })
-        this.getListMyOrders();
-        this.data.time = setTimeout(()=>{
+        // this.getListMyOrders();
+        // 退货成功
+        tips.showSuccess("退货成功!"), setTimeout(()=>{
           this.getListMyOrders()
         }, 3000)
       }

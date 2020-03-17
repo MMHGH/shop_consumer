@@ -45,13 +45,14 @@
                    style="height:100%;-webkit-overflow-scrolling:touch">
                     <view class="content">
                         <view class="swiper">
-                            <swiper class='u-wrp-bnr' indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true'>
+                            <image src="{{bannerUrl}}" mode="aspectFill" class="banner_img"></image>
+                            <!-- <swiper class='u-wrp-bnr' indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true'>
                                 <block wx:for="{{swiperList}}" wx:key="{{index}}">
                                     <swiper-item>
                                     <image src='{{item.url}}' class='u-img-slide' mode='aspectFill'></image>
                                     </swiper-item>
                                 </block>
-                            </swiper>
+                            </swiper> -->
                         </view>
                         <view class="grid-info">
                             <van-grid column-num="3" border="{{ false }}">

@@ -21,14 +21,16 @@
   margin-left: 15rpx;
 }
 .cart .item .item-info__middle .middle-text .brand {
-  margin-top: 20rpx;
   margin-bottom: 10rpx;
 }
-.cart .item .item-info__middle .middle-text .taste {
-  margin-bottom: 20rpx;
-  overflow: hidden;
+.cart .item .item-info__middle .middle-text .goods-info {
+  max-width: 200rpx;
   white-space: nowrap;
   text-overflow: ellipsis;
+  overflow: hidden;
+}
+.cart .item .item-info__middle .middle-text .taste {
+  margin-left: 5rpx;
 }
 .cart .item .item-info__middle .middle-text .prize {
   color: #a30014;

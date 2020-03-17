@@ -76,6 +76,10 @@ Page({
     this.setData({ type: e.currentTarget.dataset.type });
     wx.setStorageSync('shopId', e.currentTarget.dataset.id)
     wx.setStorageSync('shopName', e.currentTarget.dataset.shopname)
+    if(this.data.type == 'home'){
+      // 存储店铺主页banner图
+      wx.setStorageSync('bannerUrl', e.currentTarget.dataset.banner)
+    }
     if(!this.data.userInfo.avatarUrl){
       this.setData({ showUserInfo: true });
     }else if(!isBindPhone){
@@ -85,13 +89,6 @@ Page({
         url:this.data.type == 'center'?"/pages/myCenter/myCenter":"/pages/shop/shopHome/shopHome"
       })
     }
-    // if(isBindPhone){
-    //   wx.redirectTo({
-    //     url:this.data.type == 'center'?"/pages/myCenter/myCenter":"/pages/shop/shopHome/shopHome"
-    //   })
-    // }else{
-    //   this.setData({ show: true });
-    // }
   },
   getPhoneNumber: function (e) {
     var that = this;

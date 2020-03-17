@@ -16,8 +16,11 @@
                             src="{{item.picUrl}}"/>
                        </view>
                         <view class="middle-text">
-                            <view class="brand">{{item.taste}}</view>
-                            <!-- <view class="taste">{{item.name}}</view> -->
+                            <view class="brand">{{item.brandName}}</view>
+                            <view class="goods-info">
+                                <text>{{item.categoryName}}</text>
+                                <text class="taste">{{item.taste}}</text>
+                            </view>
                             <view class="prize">￥{{item.goodsPrice}}</view>
                         </view>
                     </view>

@@ -41,6 +41,7 @@
 .my-center .main-scroll .main-list .card {
   background: #f3f3f3;
   margin-bottom: 30rpx;
+  border-radius: 20rpx;
 }
 .my-center .main-scroll .main-list .card-info .item {
   padding: 20rpx;
