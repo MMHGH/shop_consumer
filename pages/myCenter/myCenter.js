@@ -76,6 +76,7 @@ Page({
     this.setData({
       pageNum: 1
     });
+    this.getMemberInfo();
     this.getListMyOrders();
   },
    /**
@@ -207,6 +208,7 @@ Page({
           title: '提示',
           message: '退款已成功，请稍后刷新订单状态'
         }).then(() => {
+          this.getMemberInfo();
           this.getListMyOrders()
         });
         // tips.showSuccess("退货成功!"), setTimeout(()=>{
