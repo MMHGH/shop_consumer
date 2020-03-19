@@ -42,6 +42,8 @@ Page({
       shopName: wx.getStorageSync('shopName'),
       bannerUrl: wx.getStorageSync('bannerUrl')
     });
+    this.getBrandList();
+    this.getCartTotal();
   },
   /**
    * 上滑加载更多
@@ -105,8 +107,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getBrandList();
-    this.getCartTotal();
+   
   },
   changeBrand(e) {
     this.setData({
@@ -165,6 +166,9 @@ Page({
     server.postRequest(API.listGoods,params).then(res => {
       if(res.code == 100){
         const data = res.data;
+        data.dataList.length && data.dataList.forEach((item) => {
+          item.goodsName = item.goodsName.length>=6?item.goodsName.substring(0,5)+'...':item.goodsName;
+        })
         this.setData({  
           goodList: data.dataList,  
         });  

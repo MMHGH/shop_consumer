@@ -58,11 +58,18 @@
                         </view>
                         <view class="grid-info">
                             <van-grid column-num="3" border="{{ false }}">
-                                <van-grid-item data-id="{{item.id}}" data-inventory="{{item.inventory}}" bindtap="addCart" use-slot wx:for="{{ goodList }}" wx:key="{{index}}">
-                                    <image
+                                <van-grid-item class="grid-column" data-id="{{item.id}}" data-inventory="{{item.inventory}}" bindtap="addCart" use-slot wx:for="{{ goodList }}" wx:key="{{index}}">
+                                    <!-- <image
                                     class="img"
                                     mode='aspectFill'
                                     src="{{item.picUrl}}"
+                                    /> -->
+                                    <van-image
+                                        round
+                                        width="100rpx"
+                                        height="100rpx"
+                                        mode='aspectFill'
+                                        src="{{item.picUrl}}"
                                     />
                                     <text class="text">{{item.goodsName}}</text>
                                     <text class="prize">￥{{item.goodsPrice}}</text>

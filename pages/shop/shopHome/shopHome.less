@@ -63,7 +63,7 @@
             }
         }
         &-right{
-            margin:100rpx 0 50rpx 200rpx;
+            margin:100rpx 0 150rpx 200rpx;
             text-align: right;
             overflow: hidden;
             width:100%;
@@ -85,6 +85,14 @@
                 }
                 .grid-info{
                     font-size: 30rpx;
+                    .grid-column{
+                        .van-grid-item{
+                            // padding: 50rpx 0;
+                            overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                        }
+                    }
                     .img{
                         width: 100rpx; 
                         height: 100rpx;
@@ -105,7 +113,7 @@
     .add-cart{
         position: fixed;
         right:20rpx;
-        bottom:150rpx;
+        bottom:120rpx;
         padding:25rpx;
         border-radius: 30rpx;
         display: flex;
