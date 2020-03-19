@@ -39,6 +39,16 @@ Page({
       }
     })
   },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    let that = this;
+    return {
+      path: '/pages/index/index',
+      imageUrl:that.data.list[0].banner
+    }
+  },
   getUserInfo: function(e) {
     var that = this;
     if (e.detail.userInfo) {

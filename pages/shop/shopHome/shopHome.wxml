@@ -6,23 +6,24 @@
                 <scroll-view  
                     scroll-y="true" 
                     style="height: 100%" class='y'>
+                      <view class="main-left__content">
                         <van-collapse  
-                          value="{{ activeBrandName }}" 
-                          bind:change="changeBrand" 
-                          wx:for="{{brandList}}" 
-                          data-index="{{brandIndex}}" 
-                          data-id="{{brand.id}}" 
-                          wx:for-item="brand" 
-                          border="{{false}}"
-                          wx:for-index="brandIndex" 
-                          wx:key="brand"
-                          accordion>
+                            value="{{ activeBrandName }}" 
+                            bind:change="changeBrand" 
+                            wx:for="{{brandList}}" 
+                            data-index="{{brandIndex}}" 
+                            data-id="{{brand.id}}" 
+                            wx:for-item="brand" 
+                            border="{{false}}"
+                            wx:for-index="brandIndex" 
+                            wx:key="brand"
+                            accordion>
                             <van-collapse-item 
-                              title="{{brand.name}}" 
-                              is-link="{{false}}"
-                              border="{{false}}"
-                              class="brand-cell {{activeBrandName == brand.id?'activeBrand':'noActive'}} {{!categoryList.length?'noCategory':''}}"
-                              name="{{brand.id}}">
+                                title="{{brand.name}}" 
+                                is-link="{{false}}"
+                                border="{{false}}"
+                                class="brand-cell {{activeBrandName == brand.id?'activeBrand':'noActive'}} {{!categoryList.length?'noCategory':''}}"
+                                name="{{brand.id}}">
                                 <block 
                                     wx:for="{{categoryList}}" 
                                     wx:for-item="category" 
@@ -36,6 +37,7 @@
                                 </block>
                             </van-collapse-item>
                         </van-collapse>
+                      </view>
                 </scroll-view> 
             </view>
             <view class='main-right'>

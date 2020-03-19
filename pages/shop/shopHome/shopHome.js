@@ -92,6 +92,16 @@ Page({
     // this.getGoodList();
   },
   /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    let that = this;
+    return {
+      path: '/pages/index/index',
+      imageUrl:wx.getStorageSync('bannerUrl')
+    }
+  },
+  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {

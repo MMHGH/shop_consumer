@@ -16,6 +16,15 @@
   width: 200rpx;
   height: 100%;
   top: 100rpx;
+  /*隐藏滚动条*/
+}
+.shop .main-left ::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.shop .main-left__content {
+  margin-bottom: 200rpx;
 }
 .shop .main-left .brand-cell {
   text-align: center;
@@ -28,12 +37,12 @@
   background: #333333;
 }
 .shop .main-left .noActive .van-cell {
-  font-weight: 600;
+  font-weight: bold;
   background: #fafafa;
 }
 .shop .main-left .noCategory .van-collapse-item__content {
   padding: 0;
-  font-weight: 600;
+  font-weight: bold;
 }
 .shop .main-left .category-list {
   color: #333333;
