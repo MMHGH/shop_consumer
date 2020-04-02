@@ -25,7 +25,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.10.2",
-	"appid": "wx76bf0f3f1621dd7d",
+	"appid": "",
 	"projectname": "shop-consumer",
 	"debugOptions": {
 		"hidedInDevtools": []
